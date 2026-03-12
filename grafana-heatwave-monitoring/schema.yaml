@@ -1,0 +1,157 @@
+title: "This Stack installs Grafana on an OCI Linux instance"
+description: "Grafana on OCI linux Instance"
+schemaVersion: 1.1.0
+version: "20190304"
+
+variableGroups:
+  - title: General OCI Configurations
+    visible: false
+    variables:
+      - tenancy_ocid
+      - region
+
+  - title: "General Configuration"
+    visible: true
+    variables:
+      - compartment_ocid
+      - availability_domain
+      - vcn_ocid
+      - subnet_ocid
+
+  - title: "Instance Configuration"
+    visible: true
+    variables:
+      - hostname
+      - image_ocid
+      - shape
+      - instance_ocpus
+      - instance_memory_in_gbs
+      - assign_public_ip
+      - ssh_public_key
+
+
+  - title: "Dynamic Group Name"
+    visible: true
+    variables:
+       - dynamic_group_name
+
+  - title: "Policy Name"
+    visible: true
+    variables:
+       - policy_name
+
+variables:
+  compartment_ocid:
+    type: oci:identity:compartment:id
+    title: "Compartment"
+    description: "Select the compartment where you want to create the resources"
+    required: true
+
+  availability_domain:
+    type: oci:identity:availabilitydomain:name
+    title: "Availability Domain"
+    description: "Select the availability domain for your resources"
+    dependsOn:
+      compartmentId: ${compartment_ocid}
+    required: true
+
+  vcn_ocid:
+    type: oci:core:vcn:id
+    title: "Virtual Cloud Network"
+    description: "Select the VCN for your resources"
+    dependsOn:
+      compartmentId: ${compartment_ocid}
+    required: true
+
+  subnet_ocid:
+    type: oci:core:subnet:id
+    title: "Subnet"
+    description: "Select the subnet for your resources"
+    dependsOn:
+      compartmentId: ${compartment_ocid}
+      vcnId: ${vcn_ocid}
+    required: true
+
+  hostname:
+    type: string
+    title: "Hostname"
+    description: "Enter a hostname for your instance"
+    required: true
+
+  image_ocid:
+    type: oci:core:image:id
+    title: "Linux Image"
+    description: "Select a Linux image for your instance (Oracle-Linux-8.9-2024.05.29-0)"
+    #default: Oracle-Linux-8.9-2024.05.29-0
+    #default: ocid1.image.oc1.iad.aaaaaaaaxtzkhdlxbktlkhiausqz7quag7d5jqbrgy6empmrojtdktwfv7fq
+    dependsOn:
+      compartmentId: ${compartment_ocid}
+    required: true
+
+
+
+  shape:
+    type: oci:core:instanceshape:name
+    title: "Instance Shape"
+    description: "Select a shape for your instance"
+    dependsOn:
+      compartmentId: ${compartment_ocid}
+    required: true
+    visible: true
+    enum:
+      - "VM.Standard2.1"
+      - "VM.Standard1.1"
+      - "VM.Standard1.8"
+      - "VM.Standard.E4.Flex"
+      - "VM.Standard.E3.Flex"
+
+
+  instance_ocpus:
+    type: integer
+    title: "Number of OCPUs"
+    description: "Specify the number of OCPUs for flexible shapes"
+    minimum: 1
+    maximum: 64
+    default: 1
+    required: false
+    visible:
+      and:
+        - ${shape == "VM.Standard.E4.Flex" || shape == "VM.Standard.E3.Flex"}
+
+
+  instance_memory_in_gbs:
+    type: integer
+    title: "Memory (in GB)"
+    description: "Specify the amount of memory in GB for flexible shapes"
+    minimum: 1
+    maximum: 1024
+    default: 16
+    required: false
+    visible:
+      and:
+        - ${shape == "VM.Standard.E4.Flex" || shape == "VM.Standard.E3.Flex"}
+
+
+  assign_public_ip:
+    type: boolean
+    title: "Assign Public IP"
+    description: "Choose whether to assign a public IP to the instance"
+    default: true
+
+  ssh_public_key:
+    type: oci:core:ssh:publickey
+    title: "SSH Public Key"
+    description: "Paste your SSH public key"
+    required: true
+
+  dynamic_group_name:
+    type: string
+    title: "Dynamic Group Name"
+    description: "Enter a name for the Dynamic Group"
+    required: true
+
+  policy_name:
+    type: string
+    title: "Policy Name"
+    description: "Enter a name for the Policy"
+    required: true
