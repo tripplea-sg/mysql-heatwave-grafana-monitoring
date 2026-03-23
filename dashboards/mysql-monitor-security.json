@@ -1,0 +1,594 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "mysql"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "color-text"
+            },
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "dark-red",
+                  "index": 1
+                },
+                "1": {
+                  "color": "dark-green",
+                  "index": 0
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": 0
+              },
+              {
+                "color": "dark-green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "table_name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 325
+              },
+              {
+                "id": "custom.filterable"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "days_retention"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "is_active"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 71
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "is_active"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "feature"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 282
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "status"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 114
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "status"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "Not Installed": {
+                        "color": "red",
+                        "index": 0
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 11,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "table_name"
+          }
+        ]
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "dataset": "config",
+          "datasource": {
+            "type": "mysql"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "\nselect \"MySQL Enterprise Audit\" feature, if((select count(1) from `${compartment}#${display_name}`.PLUGINS \nwhere logtime=(select max(logtime) from `${compartment}#${display_name}`.PLUGINS) \nand lower(PLUGIN_NAME) like '%audit%')=0,if((select count(1) from `${compartment}#${display_name}`.component \nwhere logtime=(select max(logtime) \nfrom `${compartment}#${display_name}`.component) and \nlower(component_urn) like '%audit%')=0, 'Not Installed', 'Installed'),'Installed') status,\n'MySQL Enterprise Audit is a feature in MySQL Enterprise Edition that logs and monitors database activity for security, compliance, and auditing.'\nDescription\nunion\nselect \"MySQL Enterprise Authentication\" feature, if((select count(1) from `${compartment}#${display_name}`.PLUGINS \nwhere logtime=(select max(logtime) from `${compartment}#${display_name}`.PLUGINS) \nand lower(PLUGIN_NAME) like '%authentication%')=0,if((select count(1) from `${compartment}#${display_name}`.component \nwhere logtime=(select max(logtime) \nfrom `${compartment}#${display_name}`.component) and \nlower(component_urn) like '%authentication%')=0, 'Not Installed', 'Installed'),'Installed') status,\n'MySQL Enterprise Authentication is a feature in MySQL Enterprise Edition that integrates database login with external authentication systems (like LDAP or Active Directory) for secure user access control.'\nDescription\nunion\nselect \"MySQL Enterprise Data Masking\" feature, if((select count(1) from `${compartment}#${display_name}`.PLUGINS \nwhere logtime=(select max(logtime) from `${compartment}#${display_name}`.PLUGINS) \nand lower(PLUGIN_NAME) like '%data%masking%')=0,if((select count(1) from `${compartment}#${display_name}`.component \nwhere logtime=(select max(logtime) \nfrom `${compartment}#${display_name}`.component) and \nlower(component_urn) like '%data%masking')=0, 'Not Installed', 'Installed'),'Installed') status, \n'MySQL Enterprise Data Masking is a feature in MySQL Enterprise Edition that hides or obfuscates sensitive data to protect it from unauthorized access.'\nDescription\nunion\nselect \"MySQL Enterprise Encryption\" feature, if((select count(1) from `${compartment}#${display_name}`.PLUGINS \nwhere logtime=(select max(logtime) from `${compartment}#${display_name}`.PLUGINS) \nand lower(PLUGIN_NAME) like '%encryption%')=0,if((select count(1) from `${compartment}#${display_name}`.component \nwhere logtime=(select max(logtime) \nfrom `${compartment}#${display_name}`.component) and \nlower(component_urn) like '%encryption%')=0, 'Not Installed', 'Installed'),'Installed') status,\n'MySQL Enterprise Encryption is a feature in MySQL Enterprise Edition that protects data by encrypting it at rest and in transit to prevent unauthorized access.'\nDescription\nunion\nselect \"MySQL Enterprise Thread Pool\" feature, if((select count(1) from `${compartment}#${display_name}`.PLUGINS \nwhere logtime=(select max(logtime) from `${compartment}#${display_name}`.PLUGINS) \nand lower(PLUGIN_NAME) like '%thread%pool%')=0,if((select count(1) from `${compartment}#${display_name}`.component \nwhere logtime=(select max(logtime) \nfrom `${compartment}#${display_name}`.component) and \nlower(component_urn) like '%thread%pool%')=0, 'Not Installed', 'Installed'),'Installed') status,\n'MySQL Enterprise Thread Pool allows MySQL Enterprise Edition to run on optimum performance at high load.'\nDescription\nunion\nselect \"MySQL High Availability\" feature, if((Select count(1) from `${compartment}#${display_name}`.replication_group_members \nwhere logtime=(select max(logtime) from `${compartment}#${display_name}`.replication_group_members))<2,'Not Installed','Installed') status,\n'MySQL Group Replication is a feature in MySQL Enterprise Edition that provides high availability by synchronizing data across multiple database servers automatically.'\nDescription\nunion\nselect \"MySQL Connection Control\" feature, if((select count(1) from `${compartment}#${display_name}`.PLUGINS \nwhere logtime=(select max(logtime) from `${compartment}#${display_name}`.PLUGINS) \nand lower(PLUGIN_NAME) like '%connection%control%')=0,if((select count(1) from `${compartment}#${display_name}`.component \nwhere logtime=(select max(logtime) \nfrom `${compartment}#${display_name}`.component) and \nlower(component_urn) like '%connection%control%')=0, 'Not Installed', 'Installed'),'Installed') status,\n'Manages, limits, and monitors client connections to ensure stability, performance, and security.'\nDescription\nunion\nselect \"MySQL HeatWave RAPID\" feature, if((select count(1) from `${compartment}#${display_name}`.PLUGINS \nwhere logtime=(select max(logtime) from `${compartment}#${display_name}`.PLUGINS) \nand lower(PLUGIN_NAME) like '%rapid%')=0,if((select count(1) from `${compartment}#${display_name}`.component \nwhere logtime=(select max(logtime) \nfrom `${compartment}#${display_name}`.component) and \nlower(component_urn) like '%rapid%')=0, 'Not Installed', 'Installed'),'Installed') status,\n'In-Memory Query Performance Acceleration, Generative AI, and AutoML'\nDescription\nunion\nselect \"MySQL HeatWave Lakehouse\" feature, if((select count(1) from `${compartment}#${display_name}`.PLUGINS \nwhere logtime=(select max(logtime) from `${compartment}#${display_name}`.PLUGINS) \nand lower(PLUGIN_NAME) like '%lakehouse%')=0,if((select count(1) from `${compartment}#${display_name}`.component \nwhere logtime=(select max(logtime) \nfrom `${compartment}#${display_name}`.component) and \nlower(component_urn) like '%lakehouse%')=0, 'Not Installed', 'Installed'),'Installed') status,\n'Capability to read semi-strunctured from OCI Object Storage Bucket'\nDescription\nunion\nselect \"MySQL Vector Store\" feature, if((select count(1) from `${compartment}#${display_name}`.PLUGINS \nwhere logtime=(select max(logtime) from `${compartment}#${display_name}`.PLUGINS) \nand lower(PLUGIN_NAME) like '%vector%')=0,if((select count(1) from `${compartment}#${display_name}`.component \nwhere logtime=(select max(logtime) \nfrom `${compartment}#${display_name}`.component) and \nlower(component_urn) like '%vector%')=0, 'Not Installed', 'Installed'),'Installed') status,\n'Capability to read unstructured document, load to database as vector, and process'\nDescription",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "MySQL Advanced Features",
+      "transformations": [
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "destinationType": "number",
+                "targetField": "is_active"
+              }
+            ],
+            "fields": {}
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "mysql"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "color-text"
+            },
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "dark-red",
+                  "index": 1
+                },
+                "1": {
+                  "color": "dark-green",
+                  "index": 0
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": 0
+              },
+              {
+                "color": "dark-green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "table_name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 325
+              },
+              {
+                "id": "custom.filterable"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "days_retention"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "is_active"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 71
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "is_active"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "feature"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 282
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "status"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 891
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "Warning": {
+                        "color": "yellow",
+                        "index": 0
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "VARIABLE_NAME"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 276
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "VARIABLE_VALUE"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 296
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 24,
+        "x": 0,
+        "y": 12
+      },
+      "id": 12,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "table_name"
+          }
+        ]
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "dataset": "config",
+          "datasource": {
+            "type": "mysql"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "select VARIABLE_NAME, VARIABLE_VALUE, status, \nCASE \n  WHEN status LIKE '%Warning%' THEN 'Warning'\n  ELSE 'OK'\nEND status2 from \n(SELECT VARIABLE_NAME, VARIABLE_VALUE, if(VARIABLE_VALUE like '/var/%' or VARIABLE_VALUE like '/usr/%','Warning - Should not on /var or /usr','Passed') \nstatus\nFROM `${compartment}#${display_name}`.global_variables\nWHERE (VARIABLE_NAME='datadir') and logtime=(select max(logtime) \nfrom `${compartment}#${display_name}`.global_variables)\nunion\nSELECT VARIABLE_NAME, VARIABLE_VALUE, if(ifnull(VARIABLE_VALUE,0)=0, \n'Warning - Set binlog retention','Passed') \nstatus\nFROM `${compartment}#${display_name}`.global_variables\nWHERE (VARIABLE_NAME='binlog_expire_logs_seconds') \nand logtime=(select max(logtime) \nfrom `${compartment}#${display_name}`.global_variables)\nunion\nSELECT VARIABLE_NAME, VARIABLE_VALUE, if(VARIABLE_VALUE=0,'Warning - Change default password lifetime to > 0','Passed') status FROM `${compartment}#${display_name}`.global_variables where VARIABLE_NAME='default_password_lifetime' and logtime=(select max(logtime) from `${compartment}#${display_name}`.global_variables)\nunion\nSELECT VARIABLE_NAME, VARIABLE_VALUE, if(VARIABLE_VALUE<5,'Warning - Password history shall be >= 5','Passed') status FROM `${compartment}#${display_name}`.global_variables where VARIABLE_NAME='password_history' and logtime=(select max(logtime) from `${compartment}#${display_name}`.global_variables)\nunion\nSELECT VARIABLE_NAME, VARIABLE_VALUE, if(VARIABLE_VALUE<365, 'Warning - Password reuse interval shall be set >= 365', 'Passed') status FROM `${compartment}#${display_name}`.global_variables where VARIABLE_NAME='password_reuse_interval' and logtime=(select max(logtime) from `${compartment}#${display_name}`.global_variables)\nunion\nSELECT VARIABLE_NAME, VARIABLE_VALUE, if(VARIABLE_VALUE not like 'aes-256-%', 'Warning - Set block encryption mode to aes-256-%', 'Passed') status FROM `${compartment}#${display_name}`.global_variables where VARIABLE_NAME='block_encryption_mode' and logtime=(select max(logtime) from `${compartment}#${display_name}`.global_variables)\nunion\nSELECT VARIABLE_NAME, VARIABLE_VALUE, if(VARIABLE_VALUE not like 'ECDHE-ECDSA-AES128-GCM-SHA256','Warning - Set this variable to ECDHE-ECDSA-AES128-GCM-SHA256', 'Passed') status FROM `${compartment}#${display_name}`.global_variables where VARIABLE_NAME='ssl_cipher' and logtime=(select max(logtime) from `${compartment}#${display_name}`.global_variables)\nunion\nSELECT VARIABLE_NAME, VARIABLE_VALUE, if(VARIABLE_VALUE not like 'TLS_AES_256_GCM_SHA384','Warning - Set this variable to TLS_AES_256_GCM_SHA384', 'Passed') status FROM `${compartment}#${display_name}`.global_variables where VARIABLE_NAME='tls_ciphersuites' and logtime=(select max(logtime) from `${compartment}#${display_name}`.global_variables)\nunion\nSElECT 'FILE Privilege' VARIABLE_NAME, GRANTEE VARIABLE_VALUE, 'Ensure FILE is Not Granted to Non-Administrative Users' status from `${compartment}#${display_name}`.USER_PRIVILEGES WHERE PRIVILEGE_TYPE = 'FILE' and logtime=(select max(logtime) from `${compartment}#${display_name}`.USER_PRIVILEGES)\nunion\nSElECT 'PROCESS Privilege' VARIABLE_NAME, GRANTEE VARIABLE_VALUE, 'Ensure PROCESS is Not Granted to Non-Administrative Users' status from `${compartment}#${display_name}`.USER_PRIVILEGES WHERE PRIVILEGE_TYPE = 'PROCESS' and logtime=(select max(logtime) from `${compartment}#${display_name}`.USER_PRIVILEGES)\nunion\nSElECT 'SUPER Privilege' VARIABLE_NAME, GRANTEE VARIABLE_VALUE, 'Ensure SUPER is Not Granted to Non-Administrative Users' status from `${compartment}#${display_name}`.USER_PRIVILEGES WHERE PRIVILEGE_TYPE = 'PROCESS' and logtime=(select max(logtime) from `${compartment}#${display_name}`.USER_PRIVILEGES)\nunion\nSElECT 'SHUTDOWN Privilege' VARIABLE_NAME, GRANTEE VARIABLE_VALUE, 'Ensure SHUTDOWN is Not Granted to Non-Administrative Users' status from `${compartment}#${display_name}`.USER_PRIVILEGES WHERE PRIVILEGE_TYPE = 'SHUTDOWN' and logtime=(select max(logtime) from `${compartment}#${display_name}`.USER_PRIVILEGES)\nunion\nSElECT 'CREATE USER Privilege' VARIABLE_NAME, GRANTEE VARIABLE_VALUE, 'Ensure CREATE USER is Not Granted to Non-Administrative Users' status from `${compartment}#${display_name}`.USER_PRIVILEGES WHERE PRIVILEGE_TYPE = 'CREATE USER' and logtime=(select max(logtime) from `${compartment}#${display_name}`.USER_PRIVILEGES)\nunion\nSELECT DISTINCT 'GRANT OPTION' VARIABLE_NAME, GRANTEE VARIABLE_VALUE, 'Ensure GRANT OPTION is Not Granted to Non-Administrative Users' status from `${compartment}#${display_name}`.USER_PRIVILEGES WHERE IS_GRANTABLE = 'YES' and logtime=(select max(logtime) from `${compartment}#${display_name}`.USER_PRIVILEGES)\nunion\nSElECT 'REPLICATION SLAVE Privilege' VARIABLE_NAME, GRANTEE VARIABLE_VALUE, 'Ensure REPLICATION SLAVE is Not Granted to Non-Administrative Users' status from `${compartment}#${display_name}`.USER_PRIVILEGES WHERE PRIVILEGE_TYPE = 'REPLICATION SLAVE' and logtime=(select max(logtime) from `${compartment}#${display_name}`.USER_PRIVILEGES)\nunion\nSElECT 'SET_ANY_DEFINER Privilege' VARIABLE_NAME, GRANTEE VARIABLE_VALUE, 'Ensure SET_ANY_DEFINER is Not Granted to Non-Administrative Users' status from `${compartment}#${display_name}`.USER_PRIVILEGES WHERE PRIVILEGE_TYPE = 'SET_ANY_DEFINER' and logtime=(select max(logtime) from `${compartment}#${display_name}`.USER_PRIVILEGES)\nunion\nSElECT 'ALLOW_NONEXISTENT_DEFINER Privilege' VARIABLE_NAME, GRANTEE VARIABLE_VALUE, 'Ensure ALLOW_NONEXISTENT_DEFINER is Not Granted to Non-Administrative Users' status from `${compartment}#${display_name}`.USER_PRIVILEGES WHERE PRIVILEGE_TYPE = 'ALLOW_NONEXISTENT_DEFINER' and logtime=(select max(logtime) from `${compartment}#${display_name}`.USER_PRIVILEGES)\nunion\nSELECT 'validate_password.length' VARIABLE_NAME, (select VARIABLE_VALUE from `${compartment}#${display_name}`.global_variables where logtime=(select max(logtime) from `${compartment}#${display_name}`.global_variables) and VARIABLE_NAME='validate_password.length') VARIABLE_VALUE, 'Ensure validate_password.length is set to 14 or more' status\nunion\nSELECT 'validate_password.check_user_name' VARIABLE_NAME, (select VARIABLE_VALUE from `${compartment}#${display_name}`.global_variables where logtime=(select max(logtime) from `${compartment}#${display_name}`.global_variables) and VARIABLE_NAME='validate_password.check_user_name') VARIABLE_VALUE, 'Ensure validate_password.check_user_name is set to ON' status\nunion\nSELECT 'validate_password.policy' VARIABLE_NAME, (select VARIABLE_VALUE from `${compartment}#${display_name}`.global_variables where logtime=(select max(logtime) from `${compartment}#${display_name}`.global_variables) and VARIABLE_NAME='validate_password.policy') VARIABLE_VALUE, 'Ensure validate_password.policy is set to STRONG' status\nunion\nSELECT 'validate_password.mixed_case_count' VARIABLE_NAME, (select VARIABLE_VALUE from `${compartment}#${display_name}`.global_variables where logtime=(select max(logtime) from `${compartment}#${display_name}`.global_variables) and VARIABLE_NAME='validate_password.mixed_case_count') VARIABLE_VALUE, 'Ensure validate_password.mixed_case_count is set to 0 or 1, otherwise password can be too difficult' status\nunion\nSELECT 'validate_password.number_count' VARIABLE_NAME, (select VARIABLE_VALUE from `${compartment}#${display_name}`.global_variables where logtime=(select max(logtime) from `${compartment}#${display_name}`.global_variables) and VARIABLE_NAME='validate_password.number_count') VARIABLE_VALUE, 'Ensure validate_password.number_count is set to 0 or 1, otherwise password can be too difficult' status\nunion\nSELECT 'validate_password.special_char_count' VARIABLE_NAME, (select VARIABLE_VALUE from `${compartment}#${display_name}`.global_variables where logtime=(select max(logtime) from `${compartment}#${display_name}`.global_variables) and VARIABLE_NAME='validate_password.special_char_count') VARIABLE_VALUE, 'Ensure validate_password.special_char_count is set to 0 or 1, otherwise password can be too difficult' status\nunion\nSELECT VARIABLE_NAME, VARIABLE_VALUE, 'This value must be ON or 1' status from `${compartment}#${display_name}`.global_variables where VARIABLE_NAME='require_secure_transport' and logtime=(select max(logtime) from `${compartment}#${display_name}`.global_variables)\nunion\nSELECT VARIABLE_NAME, VARIABLE_VALUE, 'This value must be greater than 1. Zero means no limit' status from `${compartment}#${display_name}`.global_variables where VARIABLE_NAME like 'max_%connections' and logtime=(select max(logtime) from `${compartment}#${display_name}`.global_variables)\n) a",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Security Recommendation (CIS Benchmark for Oracle MySQL Enterprise Edition)",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "CASE \n  WHEN status LIKE '%Warning%' THEN 'Warning'\n  ELSE status\nEND": true,
+              "status2": true
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "table"
+    }
+  ],
+  "preload": false,
+  "refresh": "5s",
+  "schemaVersion": 42,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "HanantoWicaksono_sandbox",
+          "value": "HanantoWicaksono_sandbox"
+        },
+        "datasource": {
+          "type": "mysql",
+          "uid": "PBFD8F7C688C58497"
+        },
+        "definition": "select distinct compartment from config.target_database",
+        "label": "Environment",
+        "name": "compartment",
+        "options": [],
+        "query": {
+          "dataset": "config",
+          "editorMode": "code",
+          "format": "table",
+          "query": "select distinct compartment from config.target_database",
+          "rawQuery": true,
+          "rawSql": "select distinct compartment from config.target_database",
+          "refId": "SQLVariableQueryEditor-VariableQuery",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        "refresh": 1,
+        "regex": "",
+        "regexApplyTo": "value",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "test-2-replica",
+          "value": "test-2-replica"
+        },
+        "datasource": {
+          "type": "mysql",
+          "uid": "PBFD8F7C688C58497"
+        },
+        "definition": "select display_name from config.target_database where compartment='$compartment' and start_date_time<=now() and end_date_time>=now()",
+        "label": "Instance Name",
+        "name": "display_name",
+        "options": [],
+        "query": {
+          "dataset": "config",
+          "editorMode": "code",
+          "format": "table",
+          "query": "select display_name from config.target_database where compartment='$compartment' and start_date_time<=now() and end_date_time>=now()",
+          "rawQuery": true,
+          "rawSql": "select display_name from config.target_database where compartment='$compartment' and start_date_time<=now() and end_date_time>=now()",
+          "refId": "SQLVariableQueryEditor-VariableQuery",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        "refresh": 1,
+        "regex": "",
+        "regexApplyTo": "value",
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "MySQL-Monitor Security",
+  "uid": "advdsh9",
+  "version": 31,
+  "weekStart": ""
+}

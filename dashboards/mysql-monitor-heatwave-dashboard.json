@@ -1,0 +1,2659 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "links": [],
+  "panels": [
+    {
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 10,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "### MySQL HeatWave Database Management\n",
+        "mode": "markdown"
+      },
+      "pluginVersion": "12.4.1",
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "mysql"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 0,
+        "y": 2
+      },
+      "id": 30,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "dataset": "`HanantoWicaksono_sandbox#test-2`",
+          "datasource": {
+            "type": "mysql"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT (1 - (SUM(IF(VARIABLE_NAME = 'Innodb_buffer_pool_reads', VARIABLE_VALUE, 0)) / SUM(IF(VARIABLE_NAME = 'Innodb_buffer_pool_read_requests', VARIABLE_VALUE, 1)))) * 100 AS hit_ratio FROM `${mysql_compartment}#${mysql_instance}`.global_status \nWHERE VARIABLE_NAME IN ('Innodb_buffer_pool_read_requests', 'Innodb_buffer_pool_reads') and logtime > NOW() - INTERVAL 1 HOUR;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "name": "AVG",
+                "parameters": [
+                  {
+                    "name": "VARIABLE_VALUE",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "global_status"
+        }
+      ],
+      "title": "Buffer pool hit ratio",
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "oci-metrics-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 20,
+            "gradientMode": "scheme",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 3,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 9,
+        "x": 6,
+        "y": 2
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "right",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "compartment": "$compartment",
+          "compartmentName": "$compartment",
+          "datasource": {
+            "type": "oci-metrics-datasource"
+          },
+          "dimensionValues": [
+            "resourceType=\"mysql\"",
+            "$dimension"
+          ],
+          "groupBy": "select option (optional)",
+          "interval": "[1m]",
+          "intervalLabel": "1 minute",
+          "legendFormat": "{{resourceName}}",
+          "metric": "CpuUtilization",
+          "metricNames": "$resourcegroup",
+          "namespace": "$namespace",
+          "queryText": "CpuUtilization[1m]{resourceType=\"mysql\",$dimension}.max()",
+          "queryTextRaw": "",
+          "rawQuery": true,
+          "refId": "A",
+          "region": "$region",
+          "resourcegroup": "$resourcegroup",
+          "statistic": "max()",
+          "statisticLabel": "maximum",
+          "tagsValues": [],
+          "tenancy": "DEFAULT/",
+          "tenancyName": "DEFAULT/"
+        }
+      ],
+      "title": "CPU Utilisation ",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "oci-metrics-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "#EAB839",
+                "value": 60
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "Unit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 8,
+        "x": 15,
+        "y": 2
+      },
+      "id": 32,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "compartment": "$compartment",
+          "compartmentName": "$compartment",
+          "datasource": {
+            "type": "oci-metrics-datasource"
+          },
+          "dimensionValues": [
+            "resourceType=\"mysql\"",
+            "$dimension"
+          ],
+          "groupBy": "select option (optional)",
+          "interval": "[1m]",
+          "intervalLabel": "1 minute",
+          "legendFormat": "{{resourceName}}",
+          "metric": "OCPUsAllocated",
+          "metricNames": "$resourcegroup",
+          "namespace": "$namespace",
+          "queryText": "OCPUsAllocated[1m]{resourceType=\"mysql\",$dimension}.max()",
+          "queryTextRaw": "",
+          "rawQuery": true,
+          "refId": "A",
+          "region": "$region",
+          "resourcegroup": "$resourcegroup",
+          "statistic": "max()",
+          "statisticLabel": "maximum",
+          "tagsValues": [],
+          "tenancy": "DEFAULT/",
+          "tenancyName": "DEFAULT/"
+        }
+      ],
+      "title": "OCPU Allocated ",
+      "transparent": true,
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "oci-metrics-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 0,
+        "y": 9
+      },
+      "id": 9,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "compartment": "$compartment",
+          "compartmentName": "$compartment",
+          "datasource": {
+            "type": "oci-metrics-datasource"
+          },
+          "dimensionValues": [
+            "$dimension"
+          ],
+          "groupBy": "select option (optional)",
+          "interval": "[1d]",
+          "intervalLabel": "1 day",
+          "legendFormat": "{{resourceName}} ",
+          "metric": "StorageUsed",
+          "metricNames": "$resourcegroup",
+          "namespace": "$namespace",
+          "queryText": "StorageUsed[1d]{$dimension}.sum()",
+          "queryTextRaw": "",
+          "rawQuery": true,
+          "refId": "A",
+          "region": "$region",
+          "resourcegroup": "$resourcegroup",
+          "statistic": "sum()",
+          "statisticLabel": "sum",
+          "tagsValues": [],
+          "tenancy": "DEFAULT/",
+          "tenancyName": "DEFAULT/"
+        }
+      ],
+      "title": "Storage Used per day",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "oci-metrics-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 25,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 9,
+        "x": 6,
+        "y": 14
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "right",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "compartment": "$compartment",
+          "compartmentName": "$compartment",
+          "datasource": {
+            "type": "oci-metrics-datasource"
+          },
+          "dimensionValues": [
+            "resourceType=\"mysql\"",
+            "$dimension"
+          ],
+          "groupBy": "select option (optional)",
+          "interval": "select interval",
+          "legendFormat": "{{hostName}} ",
+          "metric": "MemoryUtilization",
+          "metricNames": "$resourcegroup",
+          "namespace": "$namespace",
+          "queryText": "MemoryUtilization[1m]{resourceType=\"mysql\",$dimension}.max()",
+          "queryTextRaw": "MemoryUtilization[5m]{resourceName=\"test-2\", resourceType=\"mysql\"}.max()",
+          "rawQuery": true,
+          "refId": "A",
+          "region": "$region",
+          "resourcegroup": "$resourcegroup",
+          "statistic": "max()",
+          "statisticLabel": "maximum",
+          "tagsValues": [],
+          "tenancy": "DEFAULT/",
+          "tenancyName": "DEFAULT/"
+        }
+      ],
+      "title": "Memory Utilisation",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "oci-metrics-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 20,
+            "gradientMode": "scheme",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 3,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decgbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 8,
+        "x": 15,
+        "y": 14
+      },
+      "id": 31,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "right",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "compartment": "$compartment",
+          "compartmentName": "$compartment",
+          "datasource": {
+            "type": "oci-metrics-datasource"
+          },
+          "dimensionValues": [
+            "resourceType=\"mysql\"",
+            "$dimension"
+          ],
+          "groupBy": "select option (optional)",
+          "interval": "[1m]",
+          "intervalLabel": "1 minute",
+          "legendFormat": "{{resourceName}}",
+          "metric": "MemoryUsed",
+          "metricNames": "$resourcegroup",
+          "namespace": "$namespace",
+          "queryText": "MemoryUsed[1m]{resourceType=\"mysql\",$dimension}.max()",
+          "queryTextRaw": "",
+          "rawQuery": true,
+          "refId": "A",
+          "region": "$region",
+          "resourcegroup": "$resourcegroup",
+          "statistic": "max()",
+          "statisticLabel": "maximum",
+          "tagsValues": [],
+          "tenancy": "DEFAULT/",
+          "tenancyName": "DEFAULT/"
+        }
+      ],
+      "title": "Memory Used",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "oci-metrics-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 6,
+        "x": 0,
+        "y": 17
+      },
+      "id": 8,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "compartment": "$compartment",
+          "compartmentName": "$compartment",
+          "datasource": {
+            "type": "oci-metrics-datasource"
+          },
+          "dimensionValues": [
+            "$dimension"
+          ],
+          "groupBy": "select option (optional)",
+          "interval": "[1d]",
+          "intervalLabel": "1 day",
+          "legendFormat": "{{resourceName}}",
+          "metric": "StorageUsed",
+          "metricNames": "$resourcegroup",
+          "namespace": "$namespace",
+          "queryText": "StorageUsed[1d]{$dimension}.max()",
+          "queryTextRaw": "StorageUtilization[240m].mean()",
+          "rawQuery": true,
+          "refId": "A",
+          "region": "$region",
+          "resourcegroup": "$resourcegroup",
+          "statistic": "max()",
+          "statisticLabel": "maximum",
+          "tagsValues": [],
+          "tenancy": "DEFAULT/",
+          "tenancyName": "DEFAULT/"
+        }
+      ],
+      "title": "Storage Utilisation per day",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "oci-metrics-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 20,
+            "gradientMode": "scheme",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 3,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 16,
+        "w": 9,
+        "x": 0,
+        "y": 26
+      },
+      "id": 17,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "right",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "compartment": "$compartment",
+          "compartmentName": "$compartment",
+          "datasource": {
+            "type": "oci-metrics-datasource"
+          },
+          "dimensionValues": [
+            "$dimension"
+          ],
+          "groupBy": "select option (optional)",
+          "interval": "[1m]",
+          "intervalLabel": "1 minute",
+          "legendFormat": "{{resourceName}}",
+          "metric": "CurrentConnections",
+          "metricNames": "$resourcegroup",
+          "namespace": "$namespace",
+          "queryText": "CurrentConnections[1m]{$dimension}.max()",
+          "queryTextRaw": "",
+          "rawQuery": true,
+          "refId": "A",
+          "region": "$region",
+          "resourcegroup": "$resourcegroup",
+          "statistic": "max()",
+          "statisticLabel": "maximum",
+          "tagsValues": [],
+          "tenancy": "DEFAULT/",
+          "tenancyName": "DEFAULT/"
+        }
+      ],
+      "title": "Connection Statistics",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "oci-metrics-datasource"
+      },
+      "description": "This represents the total time spent by user sessions either actively waiting for a resource (such as I/O, CPU, or locks) or actually using the CPU to process database work.",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "orange",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 85
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 14,
+        "x": 9,
+        "y": 26
+      },
+      "id": 15,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "compartment": "$compartment",
+          "compartmentName": "$compartment",
+          "datasource": {
+            "type": "oci-metrics-datasource"
+          },
+          "dimensionValues": [
+            "$dimension"
+          ],
+          "groupBy": "select option (optional)",
+          "interval": "[1m]",
+          "legendFormat": "Hostname: {{hostName}}",
+          "metric": "DbVolumeWriteBytes",
+          "metricNames": "$resourcegroup",
+          "metricNamesFromNS": "$namespace",
+          "namespace": "$namespace",
+          "queryText": "DbVolumeWriteBytes[1m]{$dimension}.avg()",
+          "queryTextRaw": "",
+          "rawQuery": true,
+          "refId": "A",
+          "region": "$region",
+          "resourcegroup": "$resourcegroup",
+          "statistic": "avg()",
+          "tagsValues": [],
+          "tenancy": "DEFAULT/",
+          "tenancyName": "DEFAULT/"
+        }
+      ],
+      "title": "DB Volume Write Bytes",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "reducer": "delta"
+            }
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "oci-metrics-datasource"
+      },
+      "description": "This represents the total time spent by user sessions either actively waiting for a resource (such as I/O, CPU, or locks) or actually using the CPU to process database work.",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "orange",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 85
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 14,
+        "x": 9,
+        "y": 34
+      },
+      "id": 12,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "compartment": "$compartment",
+          "compartmentName": "$compartment",
+          "datasource": {
+            "type": "oci-metrics-datasource"
+          },
+          "dimensionValues": [
+            "$dimension"
+          ],
+          "groupBy": "select option (optional)",
+          "interval": "[1m]",
+          "legendFormat": "Hostname: {{hostName}}",
+          "metric": "DbVolumeReadBytes",
+          "metricNames": "$resourcegroup",
+          "metricNamesFromNS": "$namespace",
+          "namespace": "$namespace",
+          "queryText": "DbVolumeReadBytes[1m]{$dimension}.avg()",
+          "queryTextRaw": "",
+          "rawQuery": true,
+          "refId": "A",
+          "region": "$region",
+          "resourcegroup": "$resourcegroup",
+          "statistic": "avg()",
+          "tagsValues": [],
+          "tenancy": "DEFAULT/",
+          "tenancyName": "DEFAULT/"
+        }
+      ],
+      "title": "DB Volume Read Bytes",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "reducer": "delta"
+            }
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "oci-metrics-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "orange",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 85
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 10,
+        "x": 0,
+        "y": 42
+      },
+      "id": 18,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "compartment": "$compartment",
+          "compartmentName": "$compartment",
+          "datasource": {
+            "type": "oci-metrics-datasource"
+          },
+          "dimensionValues": [
+            "$dimension"
+          ],
+          "groupBy": "select option (optional)",
+          "interval": "[1m]",
+          "intervalLabel": "1 minute",
+          "legendFormat": "{{resourceName}}",
+          "metric": "NetworkReceiveBytes",
+          "metricNames": "$resourcegroup",
+          "namespace": "$namespace",
+          "queryText": "NetworkReceiveBytes[1m]{$dimension}.max()",
+          "queryTextRaw": "",
+          "rawQuery": true,
+          "refId": "A",
+          "region": "$region",
+          "resourcegroup": "$resourcegroup",
+          "statistic": "max()",
+          "statisticLabel": "maximum",
+          "tagsValues": [],
+          "tenancy": "DEFAULT/",
+          "tenancyName": "DEFAULT/"
+        }
+      ],
+      "title": "NetworkReceiveBytes",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "DELTA",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "time"
+              ],
+              "reducer": "delta"
+            }
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "oci-metrics-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "orange",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 85
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 12,
+        "x": 11,
+        "y": 42
+      },
+      "id": 6,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": false,
+        "sizing": "auto"
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "compartment": "$compartment",
+          "compartmentName": "$compartment",
+          "datasource": {
+            "type": "oci-metrics-datasource"
+          },
+          "dimensionValues": [
+            "$dimension"
+          ],
+          "groupBy": "select option (optional)",
+          "interval": "[1m]",
+          "intervalLabel": "1 minute",
+          "legendFormat": "{{resourceName}}",
+          "metric": "NetworkTransmitBytes",
+          "metricNames": "$resourcegroup",
+          "namespace": "$namespace",
+          "queryText": "NetworkTransmitBytes[1m]{$dimension}.max()",
+          "queryTextRaw": "",
+          "rawQuery": true,
+          "refId": "A",
+          "region": "$region",
+          "resourcegroup": "$resourcegroup",
+          "statistic": "max()",
+          "statisticLabel": "maximum",
+          "tagsValues": [],
+          "tenancy": "DEFAULT/",
+          "tenancyName": "DEFAULT/"
+        }
+      ],
+      "title": "NetworkTransmitBytes",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "DELTA",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "time"
+              ],
+              "reducer": "delta"
+            }
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "oci-metrics-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisPlacement": "auto",
+            "fillOpacity": 70,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineWidth": 0,
+            "spanNulls": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "red",
+                  "index": 1,
+                  "text": "Down"
+                },
+                "1": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "UP "
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 26,
+        "w": 7,
+        "x": 0,
+        "y": 56
+      },
+      "id": 19,
+      "options": {
+        "alignValue": "left",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "mergeValues": true,
+        "rowHeight": 0.9,
+        "showValue": "auto",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "compartment": "$compartment",
+          "compartmentName": "$compartment",
+          "datasource": {
+            "type": "oci-metrics-datasource"
+          },
+          "dimensionValues": [
+            "$dimension"
+          ],
+          "groupBy": "select option (optional)",
+          "interval": "auto",
+          "intervalLabel": "Auto",
+          "legendFormat": "{{resourceName}}",
+          "metric": "HeatWaveHealth",
+          "metricNames": "$resourcegroup",
+          "namespace": "$namespace",
+          "queryText": "HeatWaveHealth[1m]{$dimension}.avg()",
+          "queryTextRaw": "",
+          "rawQuery": true,
+          "refId": "A",
+          "region": "$region",
+          "resourcegroup": "$resourcegroup",
+          "statistic": "avg()",
+          "statisticLabel": "average",
+          "tagsValues": [],
+          "tenancy": "DEFAULT/",
+          "tenancyName": "DEFAULT/"
+        }
+      ],
+      "title": "HeatWaveHealth",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "",
+            "binary": {
+              "left": "100-",
+              "right": "test-2"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "state-timeline"
+    },
+    {
+      "datasource": {
+        "type": "oci-metrics-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "red",
+                  "index": 1,
+                  "text": "Down"
+                },
+                "1": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "UP "
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 16,
+        "x": 7,
+        "y": 56
+      },
+      "id": 20,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "compartment": "$compartment",
+          "compartmentName": "$compartment",
+          "datasource": {
+            "type": "oci-metrics-datasource"
+          },
+          "dimensionValues": [
+            "$dimension"
+          ],
+          "groupBy": "select option (optional)",
+          "interval": "[1m]",
+          "intervalLabel": "1 minute",
+          "legendFormat": "{{resourceName}}",
+          "metric": "HeatWaveDataLoadProgress",
+          "metricNames": "$resourcegroup",
+          "namespace": "$namespace",
+          "queryText": "HeatWaveDataLoadProgress[1m]{$dimension}.max()",
+          "queryTextRaw": "HeatWaveDataLoadProgress[1m]{resourceName=\"test-2\",}.max()",
+          "rawQuery": true,
+          "refId": "A",
+          "region": "$region",
+          "resourcegroup": "$resourcegroup",
+          "statistic": "max()",
+          "statisticLabel": "maximum",
+          "tagsValues": [],
+          "tenancy": "DEFAULT/",
+          "tenancyName": "DEFAULT/"
+        }
+      ],
+      "title": "HeatWave Data Load Progress",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "DELTA",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "time"
+              ],
+              "reducer": "delta"
+            }
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "oci-metrics-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "#EAB839",
+                "value": 60
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 16,
+        "x": 7,
+        "y": 66
+      },
+      "id": 21,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": true,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "compartment": "$compartment",
+          "compartmentName": "$compartment",
+          "datasource": {
+            "type": "oci-metrics-datasource"
+          },
+          "dimensionValues": [
+            "resourceType=\"heatwave\"",
+            "$dimension"
+          ],
+          "groupBy": "select option (optional)",
+          "interval": "[1m]",
+          "intervalLabel": "1 minute",
+          "legendFormat": "{{hostName}} ",
+          "metric": "CpuUtilization",
+          "metricNames": "$resourcegroup",
+          "namespace": "$namespace",
+          "queryText": "CpuUtilization[1m]{resourceType=\"heatwave\",$dimension}.max()",
+          "queryTextRaw": "CpuUtilization[1m]{resourceName=\"test-2\", resourceType=\"heatwave\"}.max()",
+          "rawQuery": true,
+          "refId": "A",
+          "region": "$region",
+          "resourcegroup": "$resourcegroup",
+          "statistic": "max()",
+          "statisticLabel": "maximum",
+          "tagsValues": [],
+          "tenancy": "DEFAULT/",
+          "tenancyName": "DEFAULT/"
+        }
+      ],
+      "title": "HeatWave CPU Utilisation ",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "oci-metrics-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "#EAB839",
+                "value": 60
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 16,
+        "x": 7,
+        "y": 74
+      },
+      "id": 23,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": true,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "compartment": "$compartment",
+          "compartmentName": "$compartment",
+          "datasource": {
+            "type": "oci-metrics-datasource"
+          },
+          "dimensionValues": [
+            "resourceType=\"heatwave\"",
+            "$dimension"
+          ],
+          "groupBy": "select option (optional)",
+          "interval": "[1m]",
+          "intervalLabel": "1 minute",
+          "legendFormat": "{{hostName}} ",
+          "metric": "MemoryUtilization",
+          "metricNames": "$resourcegroup",
+          "namespace": "$namespace",
+          "queryText": "MemoryUtilization[1m]{resourceType=\"heatwave\",$dimension}.max()",
+          "queryTextRaw": "CpuUtilization[1m]{resourceName=\"test-2\", resourceType=\"heatwave\"}.max()",
+          "rawQuery": true,
+          "refId": "A",
+          "region": "$region",
+          "resourcegroup": "$resourcegroup",
+          "statistic": "max()",
+          "statisticLabel": "maximum",
+          "tagsValues": [],
+          "tenancy": "DEFAULT/",
+          "tenancyName": "DEFAULT/"
+        }
+      ],
+      "title": "HeatWave Memory Utilisation ",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-RdYlGr"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "logtime"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 147
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "VARIABLE_NAME"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 204
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "VARIABLE_VALUE"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "color-background"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 18,
+        "w": 10,
+        "x": 0,
+        "y": 82
+      },
+      "id": 22,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "dataset": "`HanantoWicaksono_sandbox#instance-1`",
+          "datasource": {
+            "type": "mysql"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "select logtime, VARIABLE_NAME, VARIABLE_VALUE from `${mysql_compartment}#${mysql_instance}`.global_status\nwhere VARIABLE_NAME like 'rapid%' and logtime=(select max(logtime) from `${mysql_compartment}#${mysql_instance}`.global_status)",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "global_status"
+        }
+      ],
+      "title": "HeatWave Overall Status Captured by Performance Schema",
+      "transparent": true,
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "mysql"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "logtime"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "table_NAME"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "LOAD_STATUS"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "QUERY_COUNT"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "LAST_QUERIED"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "NROWS"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "SIZE_BYTES"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 19,
+        "w": 11,
+        "x": 12,
+        "y": 82
+      },
+      "id": 33,
+      "options": {
+        "cellHeight": "lg",
+        "showHeader": true
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "dataset": "`HanantoWicaksono_sandbox#instance-1`",
+          "datasource": {
+            "type": "mysql"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT rpd_table_id.logtime logtime, schema_name, table_NAME, NROWS, LOAD_STATUS, SIZE_BYTES, QUERY_COUNT,LAST_QUERIED,\nLOAD_TYPE, LOAD_START_TIMESTAMP, LOAD_END_TIMESTAMP, RECOVERY_SOURCE FROM `${mysql_compartment}#${mysql_instance}`.rpd_tables,\n`${mysql_compartment}#${mysql_instance}`.rpd_table_id WHERE rpd_tables.ID = rpd_table_id.ID\nand rpd_tables.logtime=(select max(logtime) from `${mysql_compartment}#${mysql_instance}`.rpd_tables) and\nrpd_table_id.logtime=(select max(logtime) from `${mysql_compartment}#${mysql_instance}`.rpd_table_id);",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "RAPID Table Status from Performance Schema",
+      "transparent": true,
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "mysql"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "color-text"
+            },
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "DIGEST_TEXT"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 988
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "execution_count"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "avg_time_sec"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge"
+                }
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "max_time_sec"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 23,
+        "x": 0,
+        "y": 101
+      },
+      "id": 25,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "dataset": "`HanantoWicaksono_sandbox#instance-1`",
+          "datasource": {
+            "type": "mysql"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n    digest_text AS query, \n    count_star AS execution_count, \n    avg_timer_wait / 1000000000000 AS avg_time_sec,\n    max_timer_wait / 1000000000000 AS max_time_sec,\n    last_seen\nFROM `${mysql_compartment}#${mysql_instance}`.events_statements_summary_by_digest \nwhere logtime=(select max(logtime) from `${mysql_compartment}#${mysql_instance}`.events_statements_summary_by_digest)\nORDER BY avg_timer_wait DESC \nLIMIT 100;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Top 100 Poor SQL Execution",
+      "transparent": true,
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "oci-metrics-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 12,
+        "x": 0,
+        "y": 114
+      },
+      "id": 35,
+      "options": {
+        "displayMode": "lcd",
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "compartment": "$compartment",
+          "compartmentName": "$compartment",
+          "datasource": {
+            "type": "oci-metrics-datasource"
+          },
+          "dimensionValues": [
+            "resourceType=\"replica\""
+          ],
+          "groupBy": "select option (optional)",
+          "interval": "[1m]",
+          "intervalLabel": "1 minute",
+          "legendFormat": "",
+          "metric": "ChannelLag",
+          "metricNames": "$resourcegroup",
+          "namespace": "$namespace",
+          "queryText": "ChannelLag[1m]{resourceName =~ \"${mysql_instance}-REPLICA-*\"}.max()",
+          "queryTextRaw": "ChannelLag[1m]{resourceName =~ \"${mysql_instance}-REPLICA-*\"}.max()",
+          "rawQuery": false,
+          "refId": "A",
+          "region": "$region",
+          "resourcegroup": "$resourcegroup",
+          "statistic": "max()",
+          "statisticLabel": "maximum",
+          "tagsValues": [],
+          "tenancy": "DEFAULT/",
+          "tenancyName": "DEFAULT/"
+        }
+      ],
+      "title": "Managed READ REPLICA Channel Lag",
+      "transparent": true,
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "oci-metrics-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 11,
+        "x": 12,
+        "y": 114
+      },
+      "id": 34,
+      "options": {
+        "displayMode": "lcd",
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "compartment": "$compartment",
+          "compartmentName": "$compartment",
+          "datasource": {
+            "type": "oci-metrics-datasource"
+          },
+          "dimensionValues": [
+            "resourceType=\"replica\""
+          ],
+          "groupBy": "select option (optional)",
+          "interval": "[1m]",
+          "intervalLabel": "1 minute",
+          "legendFormat": "",
+          "metric": "CpuUtilization",
+          "metricNames": "$resourcegroup",
+          "namespace": "$namespace",
+          "queryText": "CpuUtilization[1m]{resourceName =~ \"${mysql_instance}-REPLICA-*\"}.max()",
+          "queryTextRaw": "CpuUtilization[1m]{resourceName =~ \"${mysql_instance}-REPLICA-*\"}.max()",
+          "rawQuery": false,
+          "refId": "A",
+          "region": "$region",
+          "resourcegroup": "$resourcegroup",
+          "statistic": "max()",
+          "statisticLabel": "maximum",
+          "tagsValues": [],
+          "tenancy": "DEFAULT/",
+          "tenancyName": "DEFAULT/"
+        }
+      ],
+      "title": "Managed READ REPLICA CPU Utilisation ",
+      "transparent": true,
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "mysql"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "color-text"
+            },
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "DIGEST_TEXT"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 988
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 20,
+        "w": 23,
+        "x": 0,
+        "y": 127
+      },
+      "id": 36,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "dataset": "`HanantoWicaksono_sandbox#instance-1`",
+          "datasource": {
+            "type": "mysql"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT logtime, source_ip, target_ip, channel_name, lag_seconds from replica.replication_lag \nwhere source_ip=(select ip_address from config.target_database where display_name='${mysql_instance}')\norder by logtime desc limit 60",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Replication Lag Time to Time",
+      "transparent": true,
+      "type": "table"
+    }
+  ],
+  "preload": false,
+  "refresh": "5s",
+  "schemaVersion": 42,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "us-ashburn-1",
+          "value": "us-ashburn-1"
+        },
+        "datasource": {
+          "type": "oci-metrics-datasource"
+        },
+        "definition": "regions()",
+        "includeAll": false,
+        "label": "OCI Region",
+        "name": "region",
+        "options": [],
+        "query": "regions()",
+        "refresh": 1,
+        "regex": "",
+        "regexApplyTo": "value",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "COE-SE > HanantoWicaksono_sandbox",
+          "value": "COE-SE > HanantoWicaksono_sandbox"
+        },
+        "datasource": {
+          "type": "oci-metrics-datasource"
+        },
+        "definition": "compartments()",
+        "hide": 1,
+        "includeAll": false,
+        "label": "OCI Compartment",
+        "name": "compartment",
+        "options": [],
+        "query": "compartments()",
+        "refresh": 1,
+        "regex": "",
+        "regexApplyTo": "value",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "oci_mysql_database",
+          "value": "oci_mysql_database"
+        },
+        "datasource": {
+          "type": "oci-metrics-datasource"
+        },
+        "definition": "namespaces($region,$compartment)",
+        "hide": 1,
+        "includeAll": false,
+        "name": "namespace",
+        "options": [],
+        "query": "namespaces($region,$compartment)",
+        "refresh": 1,
+        "regex": "/^(oci_mysql_database)$/",
+        "regexApplyTo": "value",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "NoResourceGroup",
+          "value": "NoResourceGroup"
+        },
+        "datasource": {
+          "type": "oci-metrics-datasource"
+        },
+        "definition": "resourcegroups($region, $compartment, $namespace)",
+        "hide": 1,
+        "includeAll": false,
+        "name": "resourcegroup",
+        "options": [],
+        "query": "resourcegroups($region, $compartment, $namespace)",
+        "refresh": 1,
+        "regex": "/^(NoResourceGroup)$/",
+        "regexApplyTo": "value",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "resourceName - test-2",
+          "value": "resourceName=\"test-2\""
+        },
+        "datasource": {
+          "type": "oci-metrics-datasource"
+        },
+        "definition": "dimensions($region, $compartment, $namespace, $metric, $resourcegroup)",
+        "includeAll": false,
+        "label": "Instance",
+        "name": "dimension",
+        "options": [],
+        "query": "dimensions($region, $compartment, $namespace, $metric, $resourcegroup)",
+        "refresh": 1,
+        "regex": "",
+        "regexApplyTo": "value",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "ActiveConnections",
+          "value": "ActiveConnections"
+        },
+        "datasource": {
+          "type": "oci-metrics-datasource"
+        },
+        "definition": "metrics($region,$compartment, $namespace, $resourcegroup)",
+        "hide": 2,
+        "includeAll": false,
+        "name": "metric",
+        "options": [],
+        "query": "metrics($region,$compartment, $namespace, $resourcegroup)",
+        "refresh": 1,
+        "regex": "",
+        "regexApplyTo": "value",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "HanantoWicaksono_sandbox",
+          "value": "HanantoWicaksono_sandbox"
+        },
+        "datasource": {
+          "type": "mysql"
+        },
+        "definition": "select SUBSTRING_INDEX(TRIM('$compartment'), ' ', -1)",
+        "hide": 2,
+        "includeAll": false,
+        "label": "MySQL Compartment",
+        "name": "mysql_compartment",
+        "options": [],
+        "query": "select SUBSTRING_INDEX(TRIM('$compartment'), ' ', -1)",
+        "refresh": 1,
+        "regex": "",
+        "regexApplyTo": "value",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "test-2",
+          "value": "test-2"
+        },
+        "datasource": {
+          "type": "mysql"
+        },
+        "definition": "select replace(SUBSTRING_INDEX(TRIM(replace('$dimension','=',' ')), ' ', -1),'\"','')",
+        "hide": 2,
+        "includeAll": false,
+        "label": "MySQL Compartment",
+        "name": "mysql_instance",
+        "options": [],
+        "query": "select replace(SUBSTRING_INDEX(TRIM(replace('$dimension','=',' ')), ' ', -1),'\"','')",
+        "refresh": 1,
+        "regex": "",
+        "regexApplyTo": "value",
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "2026-03-14T05:16:20.216Z",
+    "to": "2026-03-14T08:16:20.921Z"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "MySQL-Monitor HeatWave",
+  "uid": "bdwrp58zojn5sa",
+  "version": 1,
+  "weekStart": ""
+}

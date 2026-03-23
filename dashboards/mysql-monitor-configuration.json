@@ -1,0 +1,2820 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "links": [],
+  "liveNow": true,
+  "panels": [
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 9,
+        "x": 0,
+        "y": 0
+      },
+      "id": 20,
+      "options": {
+        "buttonGroup": {
+          "orientation": "center",
+          "size": "md"
+        },
+        "confirmModal": {
+          "body": "Please confirm to update changed values",
+          "cancel": "Cancel",
+          "columns": {
+            "include": [
+              "name",
+              "oldValue",
+              "newValue"
+            ],
+            "name": "Label",
+            "newValue": "New Value",
+            "oldValue": "Old Value"
+          },
+          "confirm": "Confirm",
+          "elementDisplayMode": "modified",
+          "title": "Confirm update request"
+        },
+        "elementValueChanged": "",
+        "elements": [
+          {
+            "background": "",
+            "hidden": false,
+            "id": "compartment",
+            "labelWidth": 15,
+            "section": "",
+            "title": "Compartment",
+            "tooltip": "",
+            "type": "string",
+            "uid": "0a3cc92f-03ce-4a58-a770-84f0014c557d",
+            "unit": "",
+            "value": "",
+            "width": 50
+          },
+          {
+            "hidden": false,
+            "id": "display_name",
+            "labelWidth": 15,
+            "section": "",
+            "title": "Instance",
+            "tooltip": "",
+            "type": "string",
+            "uid": "8e80d55f-d58f-4315-8430-8232b4fc7cf4",
+            "unit": "",
+            "value": "",
+            "width": 20
+          },
+          {
+            "hidden": false,
+            "id": "ip_address",
+            "labelWidth": 15,
+            "section": "",
+            "title": "IP Address",
+            "tooltip": "",
+            "type": "string",
+            "uid": "54cd0592-a5ae-4637-872a-6812571511a5",
+            "unit": "",
+            "value": "",
+            "width": 30
+          },
+          {
+            "hidden": false,
+            "id": "port",
+            "labelWidth": 15,
+            "section": "",
+            "title": "Port",
+            "tooltip": "",
+            "type": "string",
+            "uid": "db762036-b9ea-479d-8799-4fb49bc08c37",
+            "unit": "",
+            "value": "",
+            "width": 10
+          },
+          {
+            "hidden": false,
+            "id": "username",
+            "labelWidth": 15,
+            "section": "",
+            "title": "Username",
+            "tooltip": "",
+            "type": "string",
+            "uid": "5869ea76-6086-4328-902b-8134ea953c90",
+            "unit": "",
+            "value": "",
+            "width": 30
+          },
+          {
+            "id": "password",
+            "labelWidth": 15,
+            "section": "",
+            "title": "Password",
+            "tooltip": "",
+            "type": "password",
+            "uid": "f413fc1c-f120-40fd-8fb6-6179e5cb3621",
+            "unit": "",
+            "value": "",
+            "width": 30
+          },
+          {
+            "hidden": false,
+            "id": "minute_interval",
+            "labelWidth": 15,
+            "section": "",
+            "title": "Interval (Minutes)",
+            "tooltip": "",
+            "type": "string",
+            "uid": "d3faf2bb-7463-446e-8a0c-35ba73ebdfaa",
+            "unit": "",
+            "value": "",
+            "width": 10
+          },
+          {
+            "hidden": false,
+            "id": "days_retention",
+            "labelWidth": 15,
+            "section": "",
+            "title": "Retention (Days)",
+            "tooltip": "",
+            "type": "string",
+            "uid": "de0d46ad-0df5-4785-96df-512befad7f5a",
+            "unit": "",
+            "value": "",
+            "width": 10
+          },
+          {
+            "background": "",
+            "id": "start_date_time",
+            "isUseLocalTime": false,
+            "labelWidth": 15,
+            "max": "2026-03-16T07:34:59.000Z",
+            "min": "2026-02-25T07:34:49.006Z",
+            "section": "",
+            "title": "Start Date Time",
+            "tooltip": "",
+            "type": "datetime",
+            "uid": "77c26e38-0568-4a1b-a6af-740bfd20516f",
+            "unit": "",
+            "value": "",
+            "width": 30
+          },
+          {
+            "id": "end_date_time",
+            "isUseLocalTime": false,
+            "labelWidth": 15,
+            "max": "2026-03-16T07:35:48.752Z",
+            "min": "2026-02-25T07:35:43.231Z",
+            "section": "",
+            "title": "End Date Time",
+            "tooltip": "",
+            "type": "datetime",
+            "uid": "f7e6e3ba-d171-4417-8792-7013cdb3620e",
+            "unit": "",
+            "value": "",
+            "width": 30
+          },
+          {
+            "hidden": false,
+            "id": "start_time",
+            "labelWidth": 20,
+            "section": "",
+            "title": "Start Time in a Day",
+            "tooltip": "",
+            "type": "string",
+            "uid": "1293c538-090d-4bfa-861b-76b84f8dd1c4",
+            "unit": "",
+            "value": "",
+            "width": 20
+          },
+          {
+            "hidden": false,
+            "id": "end_time",
+            "labelWidth": 20,
+            "section": "",
+            "title": "Stop Time in a Day",
+            "tooltip": "",
+            "type": "string",
+            "uid": "f8759226-b542-4f13-955e-1495a4568cbb",
+            "unit": "",
+            "value": "",
+            "width": 20
+          }
+        ],
+        "initial": {
+          "code": "console.log('Elements:', context.panel.elements);\n\n/** \n * 1. Start Date/Time -> NOW \n  */\nconst startDtElement = context.panel.elements.find(e => e.id === 'start_date_time');\nif (startDtElement) {\n  startDtElement.value = new Date().toISOString();\n}\n\n/** \n * 2. End Date/Time -> NOW + 50 Years \n  */\nconst endDtElement = context.panel.elements.find(e => e.id === 'end_date_time');\nif (endDtElement) {\n  const futureDate = new Date();\n  futureDate.setFullYear(futureDate.getFullYear() + 50);\n  // Ensure we are assigning the ISO string version of the future date\n  endDtElement.value = futureDate.toISOString();\n}\n\n/** \n * 3. Times, Interval, and Retention \n  */\nconst startTimeElement = context.panel.elements.find(e => e.id === 'start_time');\nif (startTimeElement) {\n  //const start = new Date();\n  //start.setHours(0, 0, 0, 0); // 00:00:00\n  //startTimeElement.value = start.toISOString();\n  startTimeElement.value = '00:00:00' \n}\n\nconst endTimeElement = context.panel.elements.find(e => e.id === 'end_time');\nif (endTimeElement) {\n  //const end = new Date();\n  //end.setHours(23, 59, 0, 0); // 23:59:00\n  //endTimeElement.value = end.toISOString();\n  endTimeElement.value = '23:59:59' \n}\n\nconst intervalElement = context.panel.elements.find(e => e.id === 'minute_interval');\nif (intervalElement) intervalElement.value = '1';\n\nconst retentionElement = context.panel.elements.find(e => e.id === 'days_retention');\nif (retentionElement) retentionElement.value = '7';\n\n/** \n * 4. Safe check for the response to prevent \"traceId\" error \n  */\nif (context.panel.response && context.panel.response.data) {\n  try {\n    const dataQuery = context.utils.toDataQueryResponse(context.panel.response);\n    console.log('Processed Data Query:', dataQuery);\n  } catch (e) {\n    console.error('Error processing data query:', e);\n  }\n}\n\nreturn;\n\n",
+          "contentType": "application/json",
+          "getPayload": "return {}",
+          "highlight": false,
+          "highlightColor": "red",
+          "method": "-",
+          "payload": {}
+        },
+        "layout": {
+          "orientation": "horizontal",
+          "padding": 10,
+          "sectionVariant": "default",
+          "variant": "single"
+        },
+        "reset": {
+          "backgroundColor": "purple",
+          "foregroundColor": "yellow",
+          "icon": "process",
+          "text": "Reset",
+          "variant": "hidden"
+        },
+        "resetAction": {
+          "code": "if (context.panel.response) {\n  context.grafana.notifySuccess(['Update', 'Values updated successfully.']);\n  context.grafana.refresh();\n} else {\n  context.grafana.notifyError(['Update', 'An error occurred updating values.']);\n}",
+          "confirm": false,
+          "getPayload": "return {}",
+          "mode": "initial",
+          "payload": {}
+        },
+        "saveDefault": {
+          "icon": "save",
+          "text": "Save Default",
+          "variant": "hidden"
+        },
+        "submit": {
+          "backgroundColor": "purple",
+          "foregroundColor": "yellow",
+          "icon": "cloud-upload",
+          "text": "Save",
+          "variant": "primary"
+        },
+        "sync": true,
+        "update": {
+          "code": "if (context.panel.response) {\n  context.grafana.notifySuccess(['Update', 'Values updated successfully.']);\n  context.grafana.refresh();\n} else {\n  context.grafana.notifyError(['Update', 'An error occurred updating values.']);\n}",
+          "confirm": false,
+          "contentType": "application/json",
+          "datasource": "PBFD8F7C688C58497",
+          "getPayload": "INSERT INTO\nconfig.target_database(\n  compartment,\n  display_name,\n  ip_address,I\n  port,\n  username,\n  password,\n  minute_interval,\n  days_retention,\n  start_date_time,\n  end_date_time,\n  start_time,\n  end_time\n)\nVALUES\n  (\n    '${payload.compartment}',\n    '${payload.display_name}',\n    '${payload.ip_address}',\n    ${ payload.port },\n    '${payload.username}',\n    '${payload.password}',\n    ${ payload.minute_interval },\n    ${ payload.days_retention },\n    '${payload.start_date_time}',\n    '${payload.end_date_time}',\n    '${payload.start_time}',\n    '${payload.end_time}',\n  );",
+          "method": "datasource",
+          "payload": {
+            "dataset": "config",
+            "editorMode": "code",
+            "format": "table",
+            "rawQuery": true,
+            "rawSql": "INSERT INTO config.target_database (compartment, display_name, ip_address,\nport, username, password,  minute_interval, days_retention,start_date_time, end_date_time,\nstart_time, end_time, created_by, last_updated_by, last_update_date)\nVALUES\n  ('${payload.compartment}','${payload.display_name}','${payload.ip_address}',\n  ${payload.port},'${payload.username}',\n    '${payload.password}',${payload.minute_interval},${payload.days_retention},\n    STR_TO_DATE(LEFT('${payload.start_date_time}', 19), '%Y-%m-%dT%H:%i:%s'),\n    STR_TO_DATE(LEFT('${payload.end_date_time}', 19), '%Y-%m-%dT%H:%i:%s'),\n    '${payload.start_time}','${payload.end_time}','${__user.login}','${__user.login}',\n    now()\n    )\n    ON DUPLICATE KEY UPDATE\n    ip_address = '${payload.ip_address}',\n    port=${payload.port}, username='${payload.username}',\n    password='${payload.password}',\n    minute_interval=${payload.minute_interval},\n    days_retention=${payload.days_retention}, \n    start_date_time=STR_TO_DATE(LEFT('${payload.start_date_time}', 19), '%Y-%m-%dT%H:%i:%s'),\n    end_date_time=STR_TO_DATE(LEFT('${payload.end_date_time}', 19), '%Y-%m-%dT%H:%i:%s'),\n    start_time='${payload.start_time}', end_time='${payload.end_time}',\n    last_updated_by='${__user.login}', last_update_date=now()",
+            "refId": "A",
+            "sql": {
+              "columns": [
+                {
+                  "parameters": [],
+                  "type": "function"
+                }
+              ],
+              "groupBy": [
+                {
+                  "property": {
+                    "type": "string"
+                  },
+                  "type": "groupBy"
+                }
+              ],
+              "limit": 50
+            }
+          },
+          "payloadMode": "all"
+        },
+        "updateEnabled": "auto"
+      },
+      "pluginVersion": "6.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "queryType": "randomWalk",
+          "refId": "A"
+        }
+      ],
+      "title": "Register or Update Target Database",
+      "type": "volkovlabs-form-panel"
+    },
+    {
+      "datasource": {
+        "type": "mysql"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "dark-red",
+                  "index": 0
+                },
+                "1": {
+                  "color": "dark-green",
+                  "index": 1
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": 0
+              },
+              {
+                "color": "dark-green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Compartment"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 234
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Instance"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "IP Address"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Port"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Interval (Sec)"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Active"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Interval (Min)"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge",
+                  "valueDisplayMode": "text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Retention (Days)"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "is_active"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 82
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "applyToRow": false,
+                  "mode": "basic",
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": ""
+            },
+            "properties": []
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 15,
+        "x": 9,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "dataset": "config",
+          "datasource": {
+            "type": "mysql"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "select CASE \n    -- 1. Check if TODAY falls between the start and end DATES\n    WHEN (DATE(NOW()) BETWEEN DATE(start_date_time) AND DATE(end_date_time))\n    -- 2. Check if the CURRENT CLOCK TIME falls between the start and end TIMES\n    AND (CURTIME() BETWEEN start_time AND end_time) \n    THEN 1 \n    ELSE 0 \n  END AS is_active,\ncompartment \"Compartment\", display_name \"Instance\", ip_address \"IP Address\", \nport \"Port\", username \"Username\", minute_interval \"Interval (Min)\", days_retention \"Retention (Days)\", start_date_time \"Start Date\", \nend_date_time \"End Date\", start_time \"Schedule Start Time\", end_time \"Schedule End Time\", created_by \"Created By\", creation_date \"Date Creation\",  \nlast_updated_by \"Last Updated By\", last_update_date \"Last Update Date\" from config.target_database",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Target Databases (TABLE NAME: config.target_database)",
+      "transformations": [
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "destinationType": "number",
+                "targetField": "is_active"
+              }
+            ],
+            "fields": {}
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "PBFD8F7C688C58497"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 9,
+        "x": 0,
+        "y": 14
+      },
+      "id": 3,
+      "options": {
+        "buttonGroup": {
+          "orientation": "center",
+          "size": "md"
+        },
+        "confirmModal": {
+          "body": "Please confirm to update changed values",
+          "cancel": "Cancel",
+          "columns": {
+            "include": [
+              "name",
+              "oldValue",
+              "newValue"
+            ],
+            "name": "Label",
+            "newValue": "New Value",
+            "oldValue": "Old Value"
+          },
+          "confirm": "Confirm",
+          "elementDisplayMode": "modified",
+          "title": "Confirm update request"
+        },
+        "elementValueChanged": "",
+        "elements": [
+          {
+            "allowCustomValue": false,
+            "fieldName": "",
+            "id": "table_name",
+            "labelWidth": 15,
+            "options": [],
+            "optionsSource": "Query",
+            "queryOptions": {
+              "source": "A",
+              "value": "TABLE_NAME"
+            },
+            "section": "",
+            "title": "Table Name",
+            "tooltip": "",
+            "type": "select",
+            "uid": "0a3cc92f-03ce-4a58-a770-84f0014c557d",
+            "unit": "",
+            "value": "",
+            "width": 50
+          },
+          {
+            "hidden": false,
+            "id": "days_retention",
+            "labelWidth": 15,
+            "section": "",
+            "title": "Retention (Days)",
+            "tooltip": "",
+            "type": "string",
+            "uid": "a3f92b84-f259-4a22-9194-032795eb7e6f",
+            "unit": "",
+            "value": "",
+            "width": 10
+          },
+          {
+            "id": "start_date_time",
+            "isUseLocalTime": false,
+            "labelWidth": 15,
+            "section": "",
+            "title": "Start Date Time",
+            "tooltip": "",
+            "type": "datetime",
+            "uid": "745b1f7e-a197-4383-b30b-d89104c470db",
+            "unit": "",
+            "value": "",
+            "width": 50
+          },
+          {
+            "id": "end_date_time",
+            "isUseLocalTime": false,
+            "labelWidth": 15,
+            "section": "",
+            "title": "End Date Time",
+            "tooltip": "",
+            "type": "datetime",
+            "uid": "0f077747-7b9f-474c-afe7-3bf8ee82e6d1",
+            "unit": "",
+            "value": "",
+            "width": 30
+          }
+        ],
+        "initial": {
+          "code": "console.log('Elements:', context.panel.elements);\n\nconst retentionElement = context.panel.elements.find(e => e.id === 'days_retention');\nif (retentionElement) retentionElement.value = '7';\n\n/** \n * 1. Start Date/Time -> NOW \n  */\nconst startDtElement = context.panel.elements.find(e => e.id === 'start_date_time');\nif (startDtElement) {\n  startDtElement.value = new Date().toISOString();\n}\n\n/** \n * 2. End Date/Time -> NOW + 50 Years \n  */\nconst endDtElement = context.panel.elements.find(e => e.id === 'end_date_time');\nif (endDtElement) {\n  const futureDate = new Date();\n  futureDate.setFullYear(futureDate.getFullYear() + 50);\n  // Ensure we are assigning the ISO string version of the future date\n  endDtElement.value = futureDate.toISOString();\n}\n\n\n/** \n * 4. Safe check for the response to prevent \"traceId\" error \n  */\nif (context.panel.response && context.panel.response.data) {\n  try {\n    const dataQuery = context.utils.toDataQueryResponse(context.panel.response);\n    console.log('Processed Data Query:', dataQuery);\n  } catch (e) {\n    console.error('Error processing data query:', e);\n  }\n}\n\nreturn;\n\n",
+          "contentType": "application/json",
+          "datasource": "PBFD8F7C688C58497",
+          "getPayload": "return {}",
+          "highlight": false,
+          "highlightColor": "red",
+          "method": "datasource",
+          "payload": {
+            "dataset": "config",
+            "editorMode": "builder",
+            "format": "table",
+            "rawSql": "",
+            "refId": "A"
+          }
+        },
+        "layout": {
+          "orientation": "horizontal",
+          "padding": 10,
+          "sectionVariant": "default",
+          "variant": "single"
+        },
+        "reset": {
+          "backgroundColor": "purple",
+          "foregroundColor": "yellow",
+          "icon": "process",
+          "text": "Reset",
+          "variant": "hidden"
+        },
+        "resetAction": {
+          "code": "if (context.panel.response) {\n  context.grafana.notifySuccess(['Update', 'Values updated successfully.']);\n  context.grafana.refresh();\n} else {\n  context.grafana.notifyError(['Update', 'An error occurred updating values.']);\n}",
+          "confirm": false,
+          "getPayload": "return {}",
+          "mode": "initial",
+          "payload": {}
+        },
+        "saveDefault": {
+          "icon": "save",
+          "text": "Save Default",
+          "variant": "hidden"
+        },
+        "submit": {
+          "backgroundColor": "purple",
+          "foregroundColor": "yellow",
+          "icon": "cloud-upload",
+          "text": "Submit",
+          "variant": "primary"
+        },
+        "sync": true,
+        "update": {
+          "code": "if (context.panel.response) {\n  context.grafana.notifySuccess(['Update', 'Values updated successfully.']);\n  context.grafana.refresh();\n} else {\n  context.grafana.notifyError(['Update', 'An error occurred updating values.']);\n}",
+          "confirm": false,
+          "contentType": "application/json",
+          "datasource": "PBFD8F7C688C58497",
+          "getPayload": "const payload = {};\ncontext.panel.elements.forEach((element) => {\n  if (!element.value) {\n    return;\n  }\n  payload[element.id] = element.value;\n})\n\n// Create the raw SQL query using a template string\n// const sqlQuery = `\n//  INSERT INTO config.target_database (compartment, display_name, ip_address, port, username, password)\n//  VALUES ('${payload.compartment}', '${payload.display_name}', '${payload.ip_address}', ${payload.port}, '${payload.username}','${payload.password}');\n//`;\n\nreturn payload;\n// return {\n//  rawSql: sqlQuery,\n//  format: 'table',\n// };",
+          "method": "datasource",
+          "payload": {
+            "dataset": "config",
+            "editorMode": "code",
+            "format": "table",
+            "rawQuery": true,
+            "rawSql": "INSERT INTO config.performance_schema_table (table_name, days_retention, \nstart_date_time, end_date_time, created_by, creation_date, last_updated_by, last_update_date) \nVALUES ('${payload.table_name}', ${payload.days_retention},\nSTR_TO_DATE(LEFT('${payload.start_date_time}', 19), '%Y-%m-%dT%H:%i:%s'),\nSTR_TO_DATE(LEFT('${payload.end_date_time}', 19), '%Y-%m-%dT%H:%i:%s'),\n'${__user.login}', now(), '${__user.login}', now()\n) \nON DUPLICATE KEY UPDATE\ndays_retention=${payload.days_retention},\nstart_date_time=STR_TO_DATE(LEFT('${payload.start_date_time}', 19), '%Y-%m-%dT%H:%i:%s'),\nend_date_time=STR_TO_DATE(LEFT('${payload.end_date_time}', 19), '%Y-%m-%dT%H:%i:%s'),\nlast_updated_by='${__user.login}', last_update_date=now()",
+            "refId": "A",
+            "sql": {
+              "columns": [
+                {
+                  "parameters": [],
+                  "type": "function"
+                }
+              ],
+              "groupBy": [
+                {
+                  "property": {
+                    "type": "string"
+                  },
+                  "type": "groupBy"
+                }
+              ],
+              "limit": 50
+            }
+          },
+          "payloadMode": "all"
+        },
+        "updateEnabled": "auto"
+      },
+      "pluginVersion": "6.3.1",
+      "targets": [
+        {
+          "dataset": "config",
+          "datasource": {
+            "type": "mysql",
+            "uid": "PBFD8F7C688C58497"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT table_name\nFROM information_schema.TABLES \nWHERE table_schema = 'performance_schema';\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Register or Update Performance Tables",
+      "type": "volkovlabs-form-panel"
+    },
+    {
+      "datasource": {
+        "type": "mysql"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "dark-red",
+                  "index": 1
+                },
+                "1": {
+                  "color": "dark-green",
+                  "index": 0
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": 0
+              },
+              {
+                "color": "dark-green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "table_name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 325
+              },
+              {
+                "id": "custom.filterable"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "days_retention"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "is_active"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 71
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "is_active"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 15,
+        "x": 9,
+        "y": 14
+      },
+      "id": 4,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "table_name"
+          }
+        ]
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "dataset": "config",
+          "datasource": {
+            "type": "mysql"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "select CASE \n    -- 1. Check if TODAY falls between the start and end DATES\n    WHEN (DATE(NOW()) BETWEEN DATE(start_date_time) AND DATE(end_date_time))\n    THEN 1 \n    ELSE 0 \n  END AS is_active, a.* from config.performance_schema_table a",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Performance Table (TABLE NAME: config.performance_schema_table)",
+      "transformations": [
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "destinationType": "number",
+                "targetField": "is_active"
+              }
+            ],
+            "fields": {}
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "PBFD8F7C688C58497"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 9,
+        "x": 0,
+        "y": 21
+      },
+      "id": 21,
+      "options": {
+        "buttonGroup": {
+          "orientation": "center",
+          "size": "md"
+        },
+        "confirmModal": {
+          "body": "Please confirm to update changed values",
+          "cancel": "Cancel",
+          "columns": {
+            "include": [
+              "name",
+              "oldValue",
+              "newValue"
+            ],
+            "name": "Label",
+            "newValue": "New Value",
+            "oldValue": "Old Value"
+          },
+          "confirm": "Confirm",
+          "elementDisplayMode": "modified",
+          "title": "Confirm update request"
+        },
+        "elementValueChanged": "",
+        "elements": [
+          {
+            "hidden": false,
+            "id": "compartment",
+            "labelWidth": 15,
+            "section": "",
+            "title": "Compartment",
+            "tooltip": "",
+            "type": "string",
+            "uid": "8c018419-9cde-4c2d-8588-63f51485baac",
+            "unit": "",
+            "value": "",
+            "width": 30
+          },
+          {
+            "hidden": false,
+            "id": "display_name",
+            "labelWidth": 15,
+            "section": "",
+            "title": "Instance",
+            "tooltip": "",
+            "type": "string",
+            "uid": "64052c41-593c-490a-9729-5feb183e88ea",
+            "unit": "",
+            "value": "",
+            "width": 20
+          },
+          {
+            "allowCustomValue": false,
+            "fieldName": "",
+            "id": "table_name",
+            "labelWidth": 15,
+            "options": [],
+            "optionsSource": "Query",
+            "queryOptions": {
+              "source": "A",
+              "value": "TABLE_NAME"
+            },
+            "section": "",
+            "title": "Table Name",
+            "tooltip": "",
+            "type": "select",
+            "uid": "0a3cc92f-03ce-4a58-a770-84f0014c557d",
+            "unit": "",
+            "value": "",
+            "width": 50
+          },
+          {
+            "id": "start_date_time",
+            "isUseLocalTime": false,
+            "labelWidth": 15,
+            "section": "",
+            "title": "Start Date Time",
+            "tooltip": "",
+            "type": "datetime",
+            "uid": "745b1f7e-a197-4383-b30b-d89104c470db",
+            "unit": "",
+            "value": "",
+            "width": 50
+          },
+          {
+            "id": "end_date_time",
+            "isUseLocalTime": false,
+            "labelWidth": 15,
+            "section": "",
+            "title": "End Date Time",
+            "tooltip": "",
+            "type": "datetime",
+            "uid": "0f077747-7b9f-474c-afe7-3bf8ee82e6d1",
+            "unit": "",
+            "value": "",
+            "width": 30
+          }
+        ],
+        "initial": {
+          "code": "console.log('Elements:', context.panel.elements);\n\nconst retentionElement = context.panel.elements.find(e => e.id === 'days_retention');\nif (retentionElement) retentionElement.value = '7';\n\n/** \n * 1. Start Date/Time -> NOW \n  */\nconst startDtElement = context.panel.elements.find(e => e.id === 'start_date_time');\nif (startDtElement) {\n  startDtElement.value = new Date().toISOString();\n}\n\n/** \n * 2. End Date/Time -> NOW + 50 Years \n  */\nconst endDtElement = context.panel.elements.find(e => e.id === 'end_date_time');\nif (endDtElement) {\n  const futureDate = new Date();\n  futureDate.setFullYear(futureDate.getFullYear() + 50);\n  // Ensure we are assigning the ISO string version of the future date\n  endDtElement.value = futureDate.toISOString();\n}\n\n\n/** \n * 4. Safe check for the response to prevent \"traceId\" error \n  */\nif (context.panel.response && context.panel.response.data) {\n  try {\n    const dataQuery = context.utils.toDataQueryResponse(context.panel.response);\n    console.log('Processed Data Query:', dataQuery);\n  } catch (e) {\n    console.error('Error processing data query:', e);\n  }\n}\n\nreturn;\n\n",
+          "contentType": "application/json",
+          "datasource": "PBFD8F7C688C58497",
+          "getPayload": "return {}",
+          "highlight": false,
+          "highlightColor": "red",
+          "method": "datasource",
+          "payload": {
+            "dataset": "config",
+            "editorMode": "builder",
+            "format": "table",
+            "rawSql": "",
+            "refId": "A"
+          }
+        },
+        "layout": {
+          "orientation": "horizontal",
+          "padding": 10,
+          "sectionVariant": "default",
+          "variant": "single"
+        },
+        "reset": {
+          "backgroundColor": "purple",
+          "foregroundColor": "yellow",
+          "icon": "process",
+          "text": "Reset",
+          "variant": "hidden"
+        },
+        "resetAction": {
+          "code": "if (context.panel.response) {\n  context.grafana.notifySuccess(['Update', 'Values updated successfully.']);\n  context.grafana.refresh();\n} else {\n  context.grafana.notifyError(['Update', 'An error occurred updating values.']);\n}",
+          "confirm": false,
+          "getPayload": "return {}",
+          "mode": "initial",
+          "payload": {}
+        },
+        "saveDefault": {
+          "icon": "save",
+          "text": "Save Default",
+          "variant": "hidden"
+        },
+        "submit": {
+          "backgroundColor": "purple",
+          "foregroundColor": "yellow",
+          "icon": "cloud-upload",
+          "text": "Submit",
+          "variant": "primary"
+        },
+        "sync": true,
+        "update": {
+          "code": "if (context.panel.response) {\n  context.grafana.notifySuccess(['Update', 'Values updated successfully.']);\n  context.grafana.refresh();\n} else {\n  context.grafana.notifyError(['Update', 'An error occurred updating values.']);\n}",
+          "confirm": false,
+          "contentType": "application/json",
+          "datasource": "PBFD8F7C688C58497",
+          "getPayload": "const payload = {};\ncontext.panel.elements.forEach((element) => {\n  if (!element.value) {\n    return;\n  }\n  payload[element.id] = element.value;\n})\n\n// Create the raw SQL query using a template string\n// const sqlQuery = `\n//  INSERT INTO config.target_database (compartment, display_name, ip_address, port, username, password)\n//  VALUES ('${payload.compartment}', '${payload.display_name}', '${payload.ip_address}', ${payload.port}, '${payload.username}','${payload.password}');\n//`;\n\nreturn payload;\n// return {\n//  rawSql: sqlQuery,\n//  format: 'table',\n// };",
+          "method": "datasource",
+          "payload": {
+            "dataset": "config",
+            "editorMode": "code",
+            "format": "table",
+            "rawQuery": true,
+            "rawSql": "INSERT INTO config.include_performance_schema (compartment, display_name, table_name, \nstart_date_time, end_date_time, created_by, creation_date, last_updated_by, last_update_date) \nVALUES ('${payload.compartment}', '${payload.display_name}', \n'${payload.table_name}',\nSTR_TO_DATE(LEFT('${payload.start_date_time}', 19), '%Y-%m-%dT%H:%i:%s'),\nSTR_TO_DATE(LEFT('${payload.end_date_time}', 19), '%Y-%m-%dT%H:%i:%s'),\n'${__user.login}', now(), '${__user.login}', now()\n) \nON DUPLICATE KEY UPDATE\nstart_date_time=STR_TO_DATE(LEFT('${payload.start_date_time}', 19), '%Y-%m-%dT%H:%i:%s'),\nend_date_time=STR_TO_DATE(LEFT('${payload.end_date_time}', 19), '%Y-%m-%dT%H:%i:%s'),\nlast_updated_by='${__user.login}', last_update_date=now()",
+            "refId": "A",
+            "sql": {
+              "columns": [
+                {
+                  "parameters": [],
+                  "type": "function"
+                }
+              ],
+              "groupBy": [
+                {
+                  "property": {
+                    "type": "string"
+                  },
+                  "type": "groupBy"
+                }
+              ],
+              "limit": 50
+            }
+          },
+          "payloadMode": "all"
+        },
+        "updateEnabled": "auto"
+      },
+      "pluginVersion": "6.3.1",
+      "targets": [
+        {
+          "dataset": "config",
+          "datasource": {
+            "type": "mysql",
+            "uid": "PBFD8F7C688C58497"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT table_name\nFROM information_schema.TABLES \nWHERE table_schema = 'performance_schema';\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "INCLUDE -- Performance Tables",
+      "type": "volkovlabs-form-panel"
+    },
+    {
+      "datasource": {
+        "type": "mysql"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "dark-red",
+                  "index": 0
+                },
+                "1": {
+                  "color": "dark-green",
+                  "index": 1
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": 0
+              },
+              {
+                "color": "dark-green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "table_name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 325
+              },
+              {
+                "id": "custom.filterable"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "compartment"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "display_name"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "is_active"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 69
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 15,
+        "x": 9,
+        "y": 21
+      },
+      "id": 22,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "table_name"
+          }
+        ]
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "dataset": "config",
+          "datasource": {
+            "type": "mysql"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "select CASE \n    -- 1. Check if TODAY falls between the start and end DATES\n    WHEN (DATE(NOW()) BETWEEN DATE(start_date_time) AND DATE(end_date_time))\n    THEN 1 \n    ELSE 0 \n  END AS is_active, a.* from config.include_performance_schema a",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "INCLUDE -- (TABLE NAME: config.include_performance_schema)",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "PBFD8F7C688C58497"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 9,
+        "x": 0,
+        "y": 29
+      },
+      "id": 23,
+      "options": {
+        "buttonGroup": {
+          "orientation": "center",
+          "size": "md"
+        },
+        "confirmModal": {
+          "body": "Please confirm to update changed values",
+          "cancel": "Cancel",
+          "columns": {
+            "include": [
+              "name",
+              "oldValue",
+              "newValue"
+            ],
+            "name": "Label",
+            "newValue": "New Value",
+            "oldValue": "Old Value"
+          },
+          "confirm": "Confirm",
+          "elementDisplayMode": "modified",
+          "title": "Confirm update request"
+        },
+        "elementValueChanged": "",
+        "elements": [
+          {
+            "hidden": false,
+            "id": "compartment",
+            "labelWidth": 15,
+            "section": "",
+            "title": "Compartment",
+            "tooltip": "",
+            "type": "string",
+            "uid": "8c018419-9cde-4c2d-8588-63f51485baac",
+            "unit": "",
+            "value": "",
+            "width": 30
+          },
+          {
+            "hidden": false,
+            "id": "display_name",
+            "labelWidth": 15,
+            "section": "",
+            "title": "Instance",
+            "tooltip": "",
+            "type": "string",
+            "uid": "64052c41-593c-490a-9729-5feb183e88ea",
+            "unit": "",
+            "value": "",
+            "width": 20
+          },
+          {
+            "allowCustomValue": false,
+            "fieldName": "",
+            "id": "table_name",
+            "labelWidth": 15,
+            "options": [],
+            "optionsSource": "Query",
+            "queryOptions": {
+              "source": "A",
+              "value": "TABLE_NAME"
+            },
+            "section": "",
+            "title": "Table Name",
+            "tooltip": "",
+            "type": "select",
+            "uid": "0a3cc92f-03ce-4a58-a770-84f0014c557d",
+            "unit": "",
+            "value": "",
+            "width": 50
+          },
+          {
+            "id": "start_date_time",
+            "isUseLocalTime": false,
+            "labelWidth": 15,
+            "section": "",
+            "title": "Start Date Time",
+            "tooltip": "",
+            "type": "datetime",
+            "uid": "745b1f7e-a197-4383-b30b-d89104c470db",
+            "unit": "",
+            "value": "",
+            "width": 50
+          },
+          {
+            "id": "end_date_time",
+            "isUseLocalTime": false,
+            "labelWidth": 15,
+            "section": "",
+            "title": "End Date Time",
+            "tooltip": "",
+            "type": "datetime",
+            "uid": "0f077747-7b9f-474c-afe7-3bf8ee82e6d1",
+            "unit": "",
+            "value": "",
+            "width": 30
+          }
+        ],
+        "initial": {
+          "code": "console.log('Elements:', context.panel.elements);\n\nconst retentionElement = context.panel.elements.find(e => e.id === 'days_retention');\nif (retentionElement) retentionElement.value = '7';\n\n/** \n * 1. Start Date/Time -> NOW \n  */\nconst startDtElement = context.panel.elements.find(e => e.id === 'start_date_time');\nif (startDtElement) {\n  startDtElement.value = new Date().toISOString();\n}\n\n/** \n * 2. End Date/Time -> NOW + 50 Years \n  */\nconst endDtElement = context.panel.elements.find(e => e.id === 'end_date_time');\nif (endDtElement) {\n  const futureDate = new Date();\n  futureDate.setFullYear(futureDate.getFullYear() + 50);\n  // Ensure we are assigning the ISO string version of the future date\n  endDtElement.value = futureDate.toISOString();\n}\n\n\n/** \n * 4. Safe check for the response to prevent \"traceId\" error \n  */\nif (context.panel.response && context.panel.response.data) {\n  try {\n    const dataQuery = context.utils.toDataQueryResponse(context.panel.response);\n    console.log('Processed Data Query:', dataQuery);\n  } catch (e) {\n    console.error('Error processing data query:', e);\n  }\n}\n\nreturn;\n\n",
+          "contentType": "application/json",
+          "datasource": "PBFD8F7C688C58497",
+          "getPayload": "return {}",
+          "highlight": false,
+          "highlightColor": "red",
+          "method": "datasource",
+          "payload": {
+            "dataset": "config",
+            "editorMode": "builder",
+            "format": "table",
+            "rawSql": "",
+            "refId": "A"
+          }
+        },
+        "layout": {
+          "orientation": "horizontal",
+          "padding": 10,
+          "sectionVariant": "default",
+          "variant": "single"
+        },
+        "reset": {
+          "backgroundColor": "purple",
+          "foregroundColor": "yellow",
+          "icon": "process",
+          "text": "Reset",
+          "variant": "hidden"
+        },
+        "resetAction": {
+          "code": "if (context.panel.response) {\n  context.grafana.notifySuccess(['Update', 'Values updated successfully.']);\n  context.grafana.refresh();\n} else {\n  context.grafana.notifyError(['Update', 'An error occurred updating values.']);\n}",
+          "confirm": false,
+          "getPayload": "return {}",
+          "mode": "initial",
+          "payload": {}
+        },
+        "saveDefault": {
+          "icon": "save",
+          "text": "Save Default",
+          "variant": "hidden"
+        },
+        "submit": {
+          "backgroundColor": "purple",
+          "foregroundColor": "yellow",
+          "icon": "cloud-upload",
+          "text": "Submit",
+          "variant": "primary"
+        },
+        "sync": true,
+        "update": {
+          "code": "if (context.panel.response) {\n  context.grafana.notifySuccess(['Update', 'Values updated successfully.']);\n  context.grafana.refresh();\n} else {\n  context.grafana.notifyError(['Update', 'An error occurred updating values.']);\n}",
+          "confirm": false,
+          "contentType": "application/json",
+          "datasource": "PBFD8F7C688C58497",
+          "getPayload": "const payload = {};\ncontext.panel.elements.forEach((element) => {\n  if (!element.value) {\n    return;\n  }\n  payload[element.id] = element.value;\n})\n\n// Create the raw SQL query using a template string\n// const sqlQuery = `\n//  INSERT INTO config.target_database (compartment, display_name, ip_address, port, username, password)\n//  VALUES ('${payload.compartment}', '${payload.display_name}', '${payload.ip_address}', ${payload.port}, '${payload.username}','${payload.password}');\n//`;\n\nreturn payload;\n// return {\n//  rawSql: sqlQuery,\n//  format: 'table',\n// };",
+          "method": "datasource",
+          "payload": {
+            "dataset": "config",
+            "editorMode": "code",
+            "format": "table",
+            "rawQuery": true,
+            "rawSql": "INSERT INTO config.exclude_performance_schema (compartment, display_name, table_name, \nstart_date_time, end_date_time, created_by, creation_date, last_updated_by, last_update_date) \nVALUES ('${payload.compartment}', '${payload.display_name}', \n'${payload.table_name}',\nSTR_TO_DATE(LEFT('${payload.start_date_time}', 19), '%Y-%m-%dT%H:%i:%s'),\nSTR_TO_DATE(LEFT('${payload.end_date_time}', 19), '%Y-%m-%dT%H:%i:%s'),\n'${__user.login}', now(), '${__user.login}', now()\n) \nON DUPLICATE KEY UPDATE\nstart_date_time=STR_TO_DATE(LEFT('${payload.start_date_time}', 19), '%Y-%m-%dT%H:%i:%s'),\nend_date_time=STR_TO_DATE(LEFT('${payload.end_date_time}', 19), '%Y-%m-%dT%H:%i:%s'),\nlast_updated_by='${__user.login}', last_update_date=now()",
+            "refId": "A",
+            "sql": {
+              "columns": [
+                {
+                  "parameters": [],
+                  "type": "function"
+                }
+              ],
+              "groupBy": [
+                {
+                  "property": {
+                    "type": "string"
+                  },
+                  "type": "groupBy"
+                }
+              ],
+              "limit": 50
+            }
+          },
+          "payloadMode": "all"
+        },
+        "updateEnabled": "auto"
+      },
+      "pluginVersion": "6.3.1",
+      "targets": [
+        {
+          "dataset": "config",
+          "datasource": {
+            "type": "mysql",
+            "uid": "PBFD8F7C688C58497"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT table_name\nFROM information_schema.TABLES \nWHERE table_schema = 'performance_schema';\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "EXCLUDE -- Performance Tables",
+      "type": "volkovlabs-form-panel"
+    },
+    {
+      "datasource": {
+        "type": "mysql"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "dark-red",
+                  "index": 0
+                },
+                "1": {
+                  "color": "dark-green",
+                  "index": 1
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": 0
+              },
+              {
+                "color": "dark-green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "table_name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 325
+              },
+              {
+                "id": "custom.filterable"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "compartment"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "display_name"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "is_active"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 69
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 15,
+        "x": 9,
+        "y": 29
+      },
+      "id": 24,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "table_name"
+          }
+        ]
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "dataset": "config",
+          "datasource": {
+            "type": "mysql"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "select CASE \n    -- 1. Check if TODAY falls between the start and end DATES\n    WHEN (DATE(NOW()) BETWEEN DATE(start_date_time) AND DATE(end_date_time))\n    THEN 1 \n    ELSE 0 \n  END AS is_active, a.* from config.exclude_performance_schema a",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "EXCLUDE -- (TABLE NAME: config.exclude_performance_schema)",
+      "type": "table"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 37
+      },
+      "id": 12,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "### Repository DB Performance Statistics",
+        "mode": "markdown"
+      },
+      "pluginVersion": "12.4.1",
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "PBFD8F7C688C58497"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 7,
+        "x": 0,
+        "y": 39
+      },
+      "id": 11,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "dataset": "config",
+          "datasource": {
+            "type": "mysql",
+            "uid": "PBFD8F7C688C58497"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT (1 - (SUM(IF(VARIABLE_NAME = 'Innodb_buffer_pool_reads', VARIABLE_VALUE, 0)) / \nSUM(IF(VARIABLE_NAME = 'Innodb_buffer_pool_read_requests', VARIABLE_VALUE, 1)))) * 100 AS hit_ratio \nFROM performance_schema.global_status \nWHERE VARIABLE_NAME IN ('Innodb_buffer_pool_read_requests', 'Innodb_buffer_pool_reads');",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Buffer Pool Hit Ratio",
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "uid": "PBFD8F7C688C58497"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 5,
+        "x": 7,
+        "y": 39
+      },
+      "id": 10,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "dataset": "config",
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT VARIABLE_VALUE / 1024 / 1024 / 1024 AS size_gb\nFROM performance_schema.global_variables \nWHERE VARIABLE_NAME = 'innodb_buffer_pool_size' \n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Buffer Pool Size (GB)",
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "uid": "PBFD8F7C688C58497"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 39
+      },
+      "id": 15,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "dataset": "config",
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\n            sum(ROUND(DATA_LENGTH / 1024 / 1024, 2)) AS `Data Size (MB)`,\n                sum(ROUND(INDEX_LENGTH / 1024 / 1024, 2)) AS `Index Size (MB)`,\n                    sum(ROUND((DATA_LENGTH + INDEX_LENGTH) / 1024 / 1024, 2)) AS `Total Size (MB)`\n                    FROM\n                        information_schema.TABLES\n                        WHERE\n                            TABLE_SCHEMA like '%#%' -- Replace with your database name\n                          \n\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Data Ingestion Size Statistic",
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "PBFD8F7C688C58497"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "DIGEST_TEXT"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 401
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "SCHEMA_NAME"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 254
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "DIGEST_TEXT"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "COUNT_STAR"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "total_latency"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "avg_latency"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "execution_count"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "max_latency"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "total_rows_scanned"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Table"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Approx Rows"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Data Size (MB)"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Index Size (MB)"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Total Size (MB)"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Database Target"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 223
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 48
+      },
+      "id": 18,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "dataset": "config",
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\n    TABLE_SCHEMA AS `Database Target`,\n    sum(TABLE_ROWS) AS `Approx Rows`,\n    sum(ROUND(DATA_LENGTH / 1024 / 1024, 2)) AS `Data Size (MB)`,\n    sum(ROUND(INDEX_LENGTH / 1024 / 1024, 2)) AS `Index Size (MB)`,\n    sum(ROUND((DATA_LENGTH + INDEX_LENGTH) / 1024 / 1024, 2)) AS `Total Size (MB)`\nFROM\n    information_schema.TABLES\nWHERE\n    TABLE_SCHEMA like '%#%' -- Replace with your database name\nGROUP BY TABLE_SCHEMA\nORDER BY\n    (sum(ROUND(DATA_LENGTH / 1024 / 1024, 2)) + sum(ROUND(INDEX_LENGTH / 1024 / 1024, 2))) DESC\n\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Monitored Databases ordered by Size",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "PBFD8F7C688C58497"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "DIGEST_TEXT"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 401
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "SCHEMA_NAME"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 254
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "DIGEST_TEXT"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "COUNT_STAR"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "total_latency"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "avg_latency"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "execution_count"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "max_latency"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "total_rows_scanned"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Table"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Approx Rows"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Data Size (MB)"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Index Size (MB)"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Total Size (MB)"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 54
+      },
+      "id": 14,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "dataset": "config",
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\n    TABLE_NAME AS `Table`,\n    sum(TABLE_ROWS) AS `Approx Rows`,\n    sum(ROUND(DATA_LENGTH / 1024 / 1024, 2)) AS `Data Size (MB)`,\n    sum(ROUND(INDEX_LENGTH / 1024 / 1024, 2)) AS `Index Size (MB)`,\n    sum(ROUND((DATA_LENGTH + INDEX_LENGTH) / 1024 / 1024, 2)) AS `Total Size (MB)`\nFROM\n    information_schema.TABLES\nWHERE\n    TABLE_SCHEMA like '%#%' -- Replace with your database name\nGROUP BY TABLE_NAME\nORDER BY\n    (sum(ROUND(DATA_LENGTH / 1024 / 1024, 2)) + sum(ROUND(INDEX_LENGTH / 1024 / 1024, 2))) DESC\n\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "",
+      "transparent": true,
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "PBFD8F7C688C58497"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "DIGEST_TEXT"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 401
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "SCHEMA_NAME"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 254
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "DIGEST_TEXT"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "COUNT_STAR"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "total_latency"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "avg_latency"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "execution_count"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "max_latency"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "total_rows_scanned"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 62
+      },
+      "id": 17,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "dataset": "config",
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n    DIGEST_TEXT,\n    COUNT_STAR AS execution_count,\n    FORMAT_PICO_TIME(SUM_TIMER_WAIT) AS total_latency,\n    FORMAT_PICO_TIME(AVG_TIMER_WAIT) AS avg_latency,\n    FORMAT_PICO_TIME(MAX_TIMER_WAIT) AS max_latency,\n    SUM_ROWS_EXAMINED AS total_rows_scanned\nFROM performance_schema.events_statements_summary_by_digest\nORDER BY SUM_TIMER_WAIT DESC\nLIMIT 20;\n\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Top 20 High Latency SQL Statements",
+      "transparent": true,
+      "type": "table"
+    }
+  ],
+  "preload": false,
+  "schemaVersion": 42,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "MySQL-Monitor Control Fleet",
+  "uid": "adnmc2c",
+  "version": 1,
+  "weekStart": ""
+}
