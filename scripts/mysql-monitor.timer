@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Hananto Wicaksono
+#
+# This unit file is provided as-is; users are responsible for deployment,
+# security, and ongoing maintenance.
+
+[Unit]
+Description=Run MySQL Monitor every minute
+
+[Timer]
+# *:0/1 means 'every minute' (0, 1, 2...)
+OnCalendar=*:0/1
+# Crucial: Forces systemd to be precise instead of delaying for power saving
+AccuracySec=1s
+# Ensures missed runs (during downtime) execute immediately on boot
+Persistent=true
+Unit=mysql-monitor.service
+
+[Install]
+WantedBy=timers.target
+

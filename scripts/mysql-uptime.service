@@ -1,0 +1,25 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Hananto Wicaksono
+#
+# This unit file is provided as-is; users are responsible for deployment,
+# security, and ongoing maintenance.
+
+[Unit]
+Description=Continuous MySQL Uptime Monitor
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=opc
+Environment=HOME=/home/opc
+WorkingDirectory=/home/opc
+ExecStart=/usr/bin/python3 /usr/local/bin/mysql-uptime.py
+Restart=always
+RestartSec=10
+KillMode=control-group
+TimeoutStopSec=30
+Nice=10
+
+[Install]
+WantedBy=multi-user.target
