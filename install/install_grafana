@@ -1,0 +1,315 @@
+#!/bin/bash
+# Copyright (C) 2026 Hananto Wicaksono
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+set -euo pipefail
+
+ENC_FILE="/home/opc/.mysqlsh/plugins/grafana/mysql.pass.enc"
+
+# --- 1. User Prompt for Passwords ---
+echo "--- Initial Setup: Credentials ---"
+read -s -p "Enter new MySQL root password: " MYSQL_PASS
+echo
+read -s -p "Enter new Grafana admin password: " GRAFANA_PASS
+echo
+echo "Passwords captured. Starting installation..."
+
+mkdir -p /home/opc/.mysqlsh/plugins/grafana
+
+echo "Encryt MySQL password to /home/opc/.mysqlsh/plugins/grafana/mysql.pass.enc"
+AUTO_KEY=$(echo "$USER@$(hostname)" | sha256sum | awk '{print $1}')
+echo "$MYSQL_PASS" | openssl enc -aes-256-cbc -pbkdf2 -salt -out "$ENC_FILE" -pass pass:"$AUTO_KEY"
+
+# --- 2. Detect OS & Set Specific RPMs ---
+if grep -q "release 8" /etc/oracle-release; then
+    MYSQL_REPO_URL="https://dev.mysql.com/get/mysql84-community-release-el8-2.noarch.rpm"
+    sudo dnf -y module disable mysql
+elif grep -q "release 9" /etc/oracle-release; then
+    MYSQL_REPO_URL="https://dev.mysql.com/get/mysql84-community-release-el9-3.noarch.rpm"
+else
+    echo "Unsupported Oracle Linux version. Script supports OL8 and OL9."
+    exit 1
+fi
+
+# --- 3. Reset Grafana repo/keys/caches to fix repomd.xml GPG signature errors ---
+echo "Resetting Grafana repo, keys, and DNF cache..."
+sudo rm -f /etc/yum.repos.d/grafana.repo /etc/yum.repos.d/grafana*.repo
+
+sudo dnf clean all
+sudo rm -rf /var/cache/dnf/*
+
+# Remove any installed Grafana-related GPG pubkeys (only those that mention Grafana)
+for key in $(rpm -qa 'gpg-pubkey*'); do
+  if rpm -qi "$key" | grep -qi grafana; then
+    sudo rpm -e "$key" || true
+  fi
+done
+
+# Import current Grafana key
+sudo rpm --import https://rpm.grafana.com/gpg.key
+
+# IMPORTANT: baseurl must be https://rpm.grafana.com in your environment (repodata exists there)
+cat <<'EOF' | sudo tee /etc/yum.repos.d/grafana.repo
+[grafana]
+name=grafana
+baseurl=https://rpm.grafana.com
+repo_gpgcheck=1
+enabled=1
+gpgcheck=1
+gpgkey=https://rpm.grafana.com/gpg.key
+sslverify=1
+sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+EOF
+
+sudo dnf clean all
+sudo dnf -y makecache --disablerepo="*" --enablerepo="grafana"
+
+# --- 4. Install MySQL 8.4 LTS Repository ---
+sudo dnf install -y "$MYSQL_REPO_URL"
+
+# --- 5. Enable Native Password Plugin (compatibility) ---
+sudo mkdir -p /etc/my.cnf.d
+cat <<EOF | sudo tee /etc/my.cnf.d/mysql-compatibility.cnf
+[mysqld]
+mysql_native_password=ON
+EOF
+
+# --- 6. Security (SELinux & Firewall) ---
+# NOTE: SELinux permissive is a significant security change; ensure it aligns with your internal standards.
+sudo setenforce 0 || true
+sudo sed -i 's/^SELINUX=enforcing/SELINUX=permissive/' /etc/selinux/config || true
+sudo setsebool -P httpd_can_network_connect 1 || true
+sudo setsebool -P httpd_can_network_connect_db 1 || true
+
+sudo firewall-cmd --permanent --add-port=3000/tcp
+sudo firewall-cmd --permanent --add-port=3306/tcp
+sudo firewall-cmd --reload
+
+# --- 7. Install & Start Services ---
+sudo dnf -y makecache
+sudo dnf install -y grafana mysql-community-server
+
+# 1. Define the target platform (EL8 for Oracle Linux 8)
+PLATFORM="el8"
+ARCH="x86_64"
+
+echo "Detecting latest MySQL Shell 9.x Innovation release..."
+
+# 2. Fetch the latest version number from the MySQL Shell download page
+# We look for the 9.x string pattern in the download links
+LATEST_VERSION=$(curl -s https://dev.mysql.com/downloads/shell/ | \
+    grep -oP 'mysql-shell-\K9\.[0-9]+\.[0-9]+' | head -1)
+
+if [ -z "$LATEST_VERSION" ]; then
+    echo "Error: Could not detect the latest 9.x version."
+    exit 1
+fi
+
+RPM_NAME="mysql-shell-${LATEST_VERSION}-1.${PLATFORM}.${ARCH}.rpm"
+DOWNLOAD_URL="https://dev.mysql.com/get/Downloads/MySQL-Shell/${RPM_NAME}"
+
+echo "Latest version found: ${LATEST_VERSION}"
+echo "Downloading from: ${DOWNLOAD_URL}"
+
+# 3. Download the RPM
+wget -q $DOWNLOAD_URL -O "/tmp/${RPM_NAME}"
+
+if [ $? -ne 0 ]; then
+    echo "Error: Download failed."
+    exit 1
+fi
+
+# 4. Install using DNF localinstall
+# This handles dependencies from standard OL8 repos without adding the MySQL repo
+echo "Installing MySQL Shell..."
+sudo dnf localinstall -y "/tmp/${RPM_NAME}"
+
+# 5. Cleanup and Verify
+rm -f "/tmp/${RPM_NAME}"
+echo "Installation finished. Verifying version:"
+mysqlsh --version
+
+# Check for python
+PYTHON=$(which python)
+
+if [ -z "$PYTHON" ]; then
+  echo "Python not found. Installing Python 3 via sudo..."
+  # Install Python 3 (requires sudo)
+  sudo yum install -y python3
+  PYTHON=$(which python3)
+  if [ -z "$PYTHON" ]; then
+    echo "Python installation failed. Exiting."
+    exit 1
+  fi
+  echo "Python installed at $PYTHON"
+else
+  echo "Python found at $PYTHON"
+fi
+
+# Check for pip, install if missing
+if ! command -v pip &> /dev/null; then
+  echo "pip not found. Installing pip..."
+  sudo yum install -y python3-pip
+fi
+
+$PYTHON -m ensurepip --upgrade --user
+
+# Install MySQL connector for this user
+echo "Installing mysql-connector-python for user $(whoami)..."
+$PYTHON -m pip install --user mysql-connector-python
+
+sudo systemctl daemon-reload
+sudo systemctl enable --now grafana-server
+sudo systemctl enable --now mysqld
+
+sudo grafana-cli plugins install oci-metrics-datasource
+sudo sed -i 's/;disable_sanitize_html = false/disable_sanitize_html = true/' /etc/grafana/grafana.ini
+sudo grafana-cli plugins install volkovlabs-form-panel
+sudo systemctl restart grafana-server
+
+# --- 8. Configure MySQL Root (using Native Password) ---
+echo "Configuring MySQL 8.4 root user..."
+sleep 5
+TEMP_MYSQL_PWD=$(sudo grep -i 'temporary password' /var/log/mysqld.log | awk '{print $NF}' | tail -n 1)
+
+if [[ -z "${TEMP_MYSQL_PWD:-}" ]]; then
+  echo "ERROR: Could not find MySQL temporary root password in /var/log/mysqld.log"
+  exit 1
+fi
+
+mysql -u root -p"$TEMP_MYSQL_PWD" --connect-expired-password <<EOF
+ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_PASS}';
+set persist local_infile=on;
+SET PERSIST binlog_raw_image=MINIMAL;
+SET PERSIST binlog_expiry_logs_seconds=900;
+FLUSH PRIVILEGES;
+EOF
+
+# --- 9. Create Databases and Tables ---
+mysql -u root -p"$MYSQL_PASS" <<'EOF'
+CREATE DATABASE IF NOT EXISTS config;
+USE config;
+CREATE TABLE IF NOT EXISTS target_database (
+    compartment VARCHAR(255) not null,
+    display_name VARCHAR(255) not null,
+    ip_address VARCHAR(50) not null,
+    port int not null default 3306,
+    username VARCHAR(50) not null,
+    password VARCHAR(512) not null,
+    minute_interval int not null default 1,
+    days_retention int not null default 14,
+    creation_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    start_date_time datetime not null DEFAULT CURRENT_TIMESTAMP,
+    end_date_time datetime not null DEFAULT '2999-01-01 00:00:00',
+    start_time TIME DEFAULT '00:00:00',
+    end_time TIME DEFAULT '23:59:59',
+    created_by varchar(50),
+    last_updated_by varchar(50),
+    last_update_date datetime,
+    PRIMARY KEY (compartment, display_name)
+);
+
+CREATE TABLE IF NOT EXISTS performance_schema_table (
+  table_name varchar(100),
+  days_retention int not null default 14,
+  start_date_time datetime not null DEFAULT CURRENT_TIMESTAMP,
+  end_date_time datetime not null DEFAULT '2999-01-01 00:00:00',
+  created_by varchar(50) not null default 'system',
+  creation_date datetime default current_timestamp,
+  last_updated_by varchar(50) not null default 'system',
+  last_update_date datetime default current_timestamp,
+  PRIMARY KEY (table_name)
+);
+
+INSERT IGNORE INTO performance_schema_table (table_name) VALUES
+('global_status'), ('rpd_tables'), ('rpd_table_id'),
+('events_statements_summary_by_digest'),
+('replication_applier_status_by_coordinator'),
+('replication_applier_status_by_worker'),
+('replication_connection_configuration'),
+('global_variables'), ('memory_summary_global_by_event_name'),
+('replication_group_members'),('replication_group_member_stats'),
+('replication_applier_status'),('users');
+
+CREATE TABLE IF NOT EXISTS include_performance_schema (
+  compartment varchar(255), 
+  display_name varchar(255), 
+  table_name varchar(100), 
+  start_date_time datetime default CURRENT_TIMESTAMP, 
+  end_date_time datetime default '2999-01-01 00:00:00', 
+  created_by varchar(50), 
+  creation_date datetime, 
+  last_updated_by varchar(50), 
+  last_update_date datetime, 
+  PRIMARY KEY (compartment, display_name, table_name)
+);
+
+CREATE TABLE IF NOT EXISTS exclude_performance_schema (
+  compartment varchar(255), 
+  display_name varchar(255), 
+  table_name varchar(100), 
+  start_date_time datetime default CURRENT_TIMESTAMP, 
+  end_date_time datetime default '2999-01-01 00:00:00', 
+  created_by varchar(50), 
+  creation_date datetime, 
+  last_updated_by varchar(50), 
+  last_update_date datetime, 
+  PRIMARY KEY (compartment, display_name, table_name)
+);
+
+CREATE DATABASE IF NOT EXISTS replica;
+USE replica;
+CREATE TABLE IF NOT EXISTS replication_lag (
+  logtime datetime invisible,
+  source_ip varchar(50),
+  target_ip varchar(50),
+  channel_name varchar(50),
+  lag_seconds int
+);
+EOF
+
+# --- 10. Provision Data Source in Grafana ---
+sudo mkdir -p /etc/grafana/provisioning/datasources
+cat <<EOF | sudo tee /etc/grafana/provisioning/datasources/mysql.yaml
+apiVersion: 1
+datasources:
+  - name: MySQL-Perf-Archive
+    type: mysql
+    url: 127.0.0.1:3306
+    user: root
+    secureJsonData:
+      password: ${MYSQL_PASS}
+    jsonData:
+      database: config
+EOF
+
+# --- 11. Final Grafana Setup ---
+sudo grafana-cli admin reset-admin-password "$GRAFANA_PASS"
+sudo systemctl restart grafana-server
+
+sudo cp /usr/local/bin/mysql-monitor.service /usr/lib/systemd/system/
+sudo cp /usr/local/bin/mysql-monitor.timer /usr/lib/systemd/system/
+sudo cp /usr/local/bin/mysql-uptime.service /usr/lib/systemd/system/
+
+sudo systemctl daemon-reload
+sudo systemctl enable --now mysql-monitor.timer
+sudo systemctl enable --now mysql-uptime.service
+
+echo "------------------------------------------------"
+echo "Setup Complete!"
+echo "MySQL 8.4 is active, SELinux is permissive, and Grafana is provisioned."
+echo "Access Grafana: http://$(hostname -I | awk '{print $1}'):3000"
+echo "Debug logs: journalctl -u mysql-monitor.service"
+echo "Check Schedule: systemctl list-timers"
