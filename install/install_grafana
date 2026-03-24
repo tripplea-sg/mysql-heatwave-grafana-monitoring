@@ -192,8 +192,8 @@ fi
 mysql -u root -p"$TEMP_MYSQL_PWD" --connect-expired-password <<EOF
 ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_PASS}';
 set persist local_infile=on;
-SET PERSIST binlog_raw_image=MINIMAL;
-SET PERSIST binlog_expiry_logs_seconds=900;
+SET PERSIST binlog_row_image=MINIMAL;
+SET PERSIST binlog_expire_logs_seconds=900;
 FLUSH PRIVILEGES;
 EOF
 
