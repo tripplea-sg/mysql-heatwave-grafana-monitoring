@@ -101,46 +101,6 @@ sudo firewall-cmd --reload
 sudo dnf -y makecache
 sudo dnf install -y grafana mysql-community-server
 
-# 1. Define the target platform (EL8 for Oracle Linux 8)
-PLATFORM="el8"
-ARCH="x86_64"
-
-echo "Detecting latest MySQL Shell 9.x Innovation release..."
-
-# 2. Fetch the latest version number from the MySQL Shell download page
-# We look for the 9.x string pattern in the download links
-LATEST_VERSION=$(curl -s https://dev.mysql.com/downloads/shell/ | \
-    grep -oP 'mysql-shell-\K9\.[0-9]+\.[0-9]+' | head -1)
-
-if [ -z "$LATEST_VERSION" ]; then
-    echo "Error: Could not detect the latest 9.x version."
-    exit 1
-fi
-
-RPM_NAME="mysql-shell-${LATEST_VERSION}-1.${PLATFORM}.${ARCH}.rpm"
-DOWNLOAD_URL="https://dev.mysql.com/get/Downloads/MySQL-Shell/${RPM_NAME}"
-
-echo "Latest version found: ${LATEST_VERSION}"
-echo "Downloading from: ${DOWNLOAD_URL}"
-
-# 3. Download the RPM
-wget -q $DOWNLOAD_URL -O "/tmp/${RPM_NAME}"
-
-if [ $? -ne 0 ]; then
-    echo "Error: Download failed."
-    exit 1
-fi
-
-# 4. Install using DNF localinstall
-# This handles dependencies from standard OL8 repos without adding the MySQL repo
-echo "Installing MySQL Shell..."
-sudo dnf localinstall -y "/tmp/${RPM_NAME}"
-
-# 5. Cleanup and Verify
-rm -f "/tmp/${RPM_NAME}"
-echo "Installation finished. Verifying version:"
-mysqlsh --version
-
 # Check for python
 PYTHON=$(which python)
 
