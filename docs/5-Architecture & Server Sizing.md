@@ -1,4 +1,4 @@
-#### Database Repository Structure
+### Database Repository Structure
 Every MySQL target is mapped to a dedicated schema in the Repository Database (repo DB) using the following naming convention:
 **`<Compartment_Name>_<Instance_Name>`**
 
