@@ -60,8 +60,8 @@ The monitoring stack is designed for single-server deployment:
 - Python scripts and queries for data collection
 
 
-Installation
-------------
+Server Installation
+-------------------
 
 Run the following commands to install and deploy the monitoring suite:
 
@@ -70,6 +70,17 @@ $ sudo yum install -y https://github.com/tripplea-sg/mysql-heatwave-grafana-moni
 $ install_grafana
 
 $ deploy_grafana_dashboard
+
+
+MySQL Target Installation
+-------------------------
+MySQL database user for database connection with the following privileges:
+- SELECT on performance_schema.*
+- SELECT on mysql.component
+
+Syntax:
+GRANT SELECT on performance_schema.* to <your_monitoring_user>@'%';
+GRANT SELECT on mysql.component to <your_monitoring_user>@'%';
 
 
 Usage
