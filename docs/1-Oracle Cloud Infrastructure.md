@@ -11,6 +11,7 @@ Then, create a `Dynamic-group`. Go to tab `Dynamic-Group` and create new under y
 ALL{instance.compartment.id = 'compartment OCID'}
 ```
 Change the `compartment OCID` with your `compartment OCID`. Refer to the following online documentation on how to get your `compartment OCID`: https://docs.oracle.com/en-us/iaas/Content/GSG/Tasks/contactingsupport_topic-Locating_Oracle_Cloud_Infrastructure_IDs.htm <br>
+<br>
 Refer to the following online documentation on how to create a `Dynamic-group`: https://docs.oracle.com/en-us/iaas/Content/Identity/dynamicgroups/To_create_a_dynamic_group.htm
 
 
