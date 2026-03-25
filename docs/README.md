@@ -15,6 +15,7 @@ This Grafana monitoring template helps teams understand how to add practical MyS
 * **Security Monitoring:** Audit access patterns and security-related metrics.
 * **High Availability Monitoring:** Track replication lag and cluster health.
 * **MySQL Enterprise Backup Monitoring:** Monitor backup success and performance.
+![Alt text](https://link-to-your-image.com)
 
   
 
