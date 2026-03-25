@@ -42,7 +42,7 @@ To finalize the policy, replace the placeholders in the snippet above with your 
 ---
 **Reference:** [Official OCI Documentation: Creating IAM Policies](https://docs.oracle.com/en/cloud/paas/integration-cloud/oracle-integration-oci/creating-iam-policy.html)
 
-
+### C. Install OCI Data Source
 
 
 
