@@ -35,3 +35,10 @@ SELECT * FROM mysql.your_new_metric_table;
 CREATE VIEW monitor_tools.your_new_metric_table AS 
 SELECT * FROM mysql.your_new_metric_table;
 ```
+**Latest Metric History:**
+On Grafana query, do the following query to get the ingested data:
+```sql
+SELECT * 
+FROM `${compartment}#${display_name}`.your_new_metric_table 
+WHERE logtime = (SELECT MAX(logtime) FROM `${compartment}#${display_name}`.your_new_metric_data);
+```
