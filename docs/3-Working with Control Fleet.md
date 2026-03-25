@@ -32,7 +32,7 @@ Set appropriate **Retention** to indicate number of days historical data is stor
 *   *Tip: To stop monitoring a performance schema immediately, simply enter the same table name and set the **End Date Time** to a past date.*
 
 
-#### Customizing Instance Metrics
+#### 3. Customizing Instance Metrics
 *   **Add Specific Metrics to an Instance:** Enable deeper granularity for high-priority targets.
 
 *   **Exclude Metrics from an Instance:** Reduce noise and overhead for specific environments.
