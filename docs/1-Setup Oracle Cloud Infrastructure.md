@@ -53,11 +53,16 @@ To finalize the policy, replace the placeholders in the snippet above with your 
 ![oci-data-source](https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/blob/main/docs/images/oci-datasource-search.png)
 
 4. **Configure Authentication:** Set the **Authentication Provider** to **OCI Instance**.
-5. Click **Save & Test**.
 
+![oci-data-source](https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/blob/main/docs/images/oci-datasource-setting.png)
 
+6. Click **Save & Test**.
 
-Once confirmed, you will see both data sources listed. No further data source configuration is required, even when adding more MySQL targets.
+![oci-data-source](https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/blob/main/docs/images/oci-datasource-success.png)
+
+<br>
+Once confirmed, you will see both data sources listed. No further data source configuration is required, even when adding more MySQL targets. <br>
+![oci-data-source](https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/blob/main/docs/images/oci-datasource-search.png)
 
 
 
