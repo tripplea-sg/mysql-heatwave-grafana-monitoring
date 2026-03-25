@@ -34,6 +34,7 @@ Set appropriate **Retention** to indicate number of days historical data is stor
 
 #### Customizing Instance Metrics
 *   **Add Specific Metrics to an Instance:** Enable deeper granularity for high-priority targets.
+
 *   **Exclude Metrics from an Instance:** Reduce noise and overhead for specific environments.
 
 ---
