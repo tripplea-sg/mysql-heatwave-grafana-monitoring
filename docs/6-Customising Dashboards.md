@@ -20,3 +20,17 @@ WHERE
     AND logtime > NOW() - INTERVAL 1 HOUR;
 ```
 This query processes data from the **last 1 hour** of the `${compartment}#${display_name}.global_status` table. It dynamically targets the specific instance using the `${compartment}` and `${display_name}` dashboard variables.
+
+#### Exposing Custom Metric Data via monitor_tools schema
+It's possible to ingest custom metric data without UI / Control Fleet. Create views within the `monitor_tools` to standardize access to the tables:
+```sql
+CREATE DATABASE IF NOT EXISTS monitor_tools;
+
+GRANT SELECT ON monitor_tools.* to 'grafana'@'%';
+
+CREATE VIEW monitor_tools.your_new_metric_table AS 
+SELECT * FROM mysql.your_new_metric_table;
+
+CREATE VIEW monitor_tools.your_new_metric_table AS 
+SELECT * FROM mysql.your_new_metric_table;
+```
