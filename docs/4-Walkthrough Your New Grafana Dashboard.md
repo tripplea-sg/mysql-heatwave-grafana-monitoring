@@ -33,6 +33,21 @@ Combining these sources allows for comprehensive troubleshooting of HeatWave wor
 2.  **Capacity Planning:** Use OCI infrastructure metrics to determine if your **HeatWave Cluster** shape needs to be upsized for your analytical dataset.
 3.  **Proactive Health Checks:** Monitor the cluster state alongside database internals to ensure high availability and optimal performance.
 
-> **Note:** Ensure your **OCI Data Source** is correctly configured with the necessary IAM policies to allow Grafana to read OCI Monitoring metrics.
+---
+
+### 4. MySQL-Monitor Instances
+The **Instance Monitoring** dashboard provides a deep dive into the operational health and resource consumption of individual MySQL targets.
+
+**Data Source:**
+All metrics in this view are collected directly from the **Performance Schema** of your registered **MySQL targets**. This data is then persisted in the repository database for historical analysis and real-time visualization.
+
+** 💡 Usability & Purpose**
+Instance Monitoring is the primary tool for day-to-day database administration and performance tuning:
+
+1.  **Health Baselines:** Monitor **System Uptime** and **Connections** to establish normal operating patterns and detect anomalies.
+2.  **Resource Bottleneck Identification:** Use **Disk** and **Memory** metrics to identify when a target requires storage expansion or memory optimization.
+3.  **Root Cause Analysis:** Drill down into **Slow Queries** and **User Statistics** to pinpoint specific workloads or users causing performance degradation.
+4.  **Data Integrity:** Track **Replication Lags** to ensure secondary instances are synchronized and ready for failover.
+
 
 
