@@ -32,12 +32,19 @@ MySQL > GRANT SELECT on mysql.component to <user>@’@’;
 ```
 
 ### Installation Steps
-It takes less than 15 minutes to complete the whole thing here. Just login to your grafana server and install:
+It takes less than 15 minutes to complete the whole thing here. Just login to your grafana server and install: 
+
 **1. Install tools**
 ```bash
 sudo yum install -y sudo yum install -y https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/raw/main/releases/mysql-monitor-3.0-1.el9.noarch.rpm
-``
+```
+
 **2. Setup Instance**
+```
+install_grafana
+```
+Set your new password for root@localhost of MySQL repository database and admin user for Grafana.
+
 **3. Install dashboard**
 
 
