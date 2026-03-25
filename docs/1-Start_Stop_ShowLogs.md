@@ -30,4 +30,9 @@ sudo systemctl status grafana-server
 sudo systemctl status mysql-monitor.timer
 sudo systemctl status mysql-uptime.service
 ```
+To check the logs for error or progress by showing last 50 records, issue the following command
+```bash
+journalctl -u mysql-monitor.service -n 50
+journalctl -u mysql-uptime.service -n 50
+```
 
