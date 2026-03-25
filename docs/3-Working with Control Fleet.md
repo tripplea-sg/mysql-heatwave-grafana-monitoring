@@ -56,7 +56,7 @@ Reduce overhead and noise by explicitly excluding certain `performance_schema` t
 
 ### 📊 Repository Health & Optimization
 #### Monitor Repository Database Performance
-Track the health and resource utilization of the monitoring "Repo DB" itself.
+Track the health and resource utilization of the monitoring "Repo DB" itself, such as buffer pool statistics and total data ingested.
 
 #### Storage Analysis & Capacity Planning
 *   **Storage by Target:** Identify which MySQL targets are consuming the most space in the repository.
