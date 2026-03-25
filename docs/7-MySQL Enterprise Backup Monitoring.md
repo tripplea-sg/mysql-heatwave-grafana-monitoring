@@ -24,7 +24,7 @@ CREATE DATABASE IF NOT EXISTS monitor_tools;
 
 GRANT SELECT ON monitor_tools.* to 'grafana'@'%';
 
-GRANT SHOW VIEW ON monitor_tools.* TO 'monitor'@'%';
+GRANT SHOW VIEW ON monitor_tools.* TO 'grafana'@'%';
 
 CREATE VIEW monitor_tools.backup_history AS 
 SELECT * FROM mysql.backup_history;
