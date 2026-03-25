@@ -50,4 +50,10 @@ SELECT * FROM dummy.backup_progress;
 SELECT * 
 FROM `${compartment}#${display_name}`.backup_history 
 WHERE logtime = (SELECT MAX(logtime) FROM `${compartment}#${display_name}`.backup_history);
+```
+**Latest Backup Progress:**
+```sql
+SELECT * 
+FROM `${compartment}#${display_name}`.backup_progress 
+WHERE logtime = (SELECT MAX(logtime) FROM `${compartment}#${display_name}`.backup_progress);
 
