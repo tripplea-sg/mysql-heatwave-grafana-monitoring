@@ -32,11 +32,30 @@ WHERE
 ```
 
 ---
-### Architecture Components
+### Monitoring Architecture Overview
 The following architecture components are installed and running in the server automatically during installation.
 
 ![MySQL-Monitor Instance](https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/blob/main/docs/images/Components.png)
 
+This template utilizes a centralized data plane rather than individual data sources for each MySQL target. This approach keeps the Grafana configuration simple, consistent, and scalable.
+
+#### 1. Data Collection Orchestration
+The collection process is managed by **systemd-based scheduling**, which executes the dispatcher script every minute.
+
+*   **Dispatcher Script:** `/usr/local/bin/mysql-dispatcher.py`
+*   **Systemd Units:**
+    *   `/usr/lib/systemd/system/mysql-monitor.service`
+    *   `/usr/lib/systemd/system/mysql-monitor.timer`
+
+The dispatcher triggers **collector workers** (`/usr/local/bin/do-monitor.py`) for each MySQL target. These workers query the `performance_schema` and write the results into the repository database.
+
+#### 2. Uptime Monitoring
+Uptime is tracked by a separate scheduler process to ensure high-frequency health checks.
+
+*   **Execution Script:** `/usr/local/bin/mysql-uptime.py`
+*   **Systemd Service:** `mysql-uptime.service`
+*   **Frequency:** Every 10 seconds.
+*   **Data Format:** Stores status as `1` (Up) or `0` (Down) in the repository database.
 
 
 
