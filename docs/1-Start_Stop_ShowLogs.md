@@ -1,5 +1,5 @@
 # Operation
-### Start-Up Procedure
+### Start Monitoring Services
 Start MySQL repository database instance if not up:
 ```bash
 sudo systemctl start mysqld
@@ -9,7 +9,7 @@ Start Grafana server if not up:
 ```bash
 sudo systemctl start grafana-server
 ```
-Start Monitoring if not up:
+Start Monitoring Processes if not up:
 ```bash
 sudo systemctl start mysql-monitor.timer
 sudo systemctl start mysql-uptime.service
@@ -34,5 +34,21 @@ To check the logs for error or progress by showing last 50 records, issue the fo
 ```bash
 journalctl -u mysql-monitor.service -n 50
 journalctl -u mysql-uptime.service -n 50
+```
+
+### Stop Monitoring Services
+Stop Monitoring Processes:
+```bash
+sudo systemctl stop mysql-monitor.timer
+sudo systemctl stop mysql-uptime.service
+```
+
+Stop Grafana server if not up:
+```bash
+sudo systemctl stop grafana-server
+```
+Stop MySQL repository database instance if not up:
+```bash
+sudo systemctl stop mysqld
 ```
 
