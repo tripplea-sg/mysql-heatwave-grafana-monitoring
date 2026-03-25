@@ -22,7 +22,8 @@ WHERE
 This query processes data from the **last 1 hour** of the `${compartment}#${display_name}.global_status` table. It dynamically targets the specific instance using the `${compartment}` and `${display_name}` dashboard variables.
 
 #### Exposing Custom Metric Data via monitor_tools schema
-It's possible to ingest custom metric data without UI / Control Fleet. Create views within the `monitor_tools` to standardize access to the tables:
+It's possible to ingest custom metric data without UI / Control Fleet. <br>
+On MySQL target database, create views within the `monitor_tools` to standardize access to the tables:
 ```sql
 CREATE DATABASE IF NOT EXISTS monitor_tools;
 
