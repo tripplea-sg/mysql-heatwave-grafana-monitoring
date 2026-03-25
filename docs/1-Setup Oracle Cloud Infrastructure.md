@@ -30,7 +30,7 @@ Allow dynamic-group '<Domain_Name>'/'<Dynamic_Group_Name>' to read log-groups in
 Allow dynamic-group '<Domain_Name>'/'<Dynamic_Group_Name>' to read log-content in compartment <Compartment_Name>
 Allow dynamic-group '<Domain_Name>'/'<Dynamic_Group_Name>' to read all-resources in compartment <Compartment_Name>
 ```
-### Configuration Details
+#### Configuration Details
 
 To finalize the policy, replace the placeholders in the snippet above with your specific environment details:
 
