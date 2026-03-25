@@ -38,6 +38,7 @@ CREATE VIEW monitor_tools.your_new_metric_table AS
 SELECT * FROM mysql.your_new_metric_table WHERE very important to limit only latest rows>;
 ```
 The `WHERE` clause is extremely important to limit number of records showed in the `VIEW`, otherwise your data in repository database will be bloated due to extreme duplication. 
+<br><br>
 **Latest Metric History:** <br>
 On Grafana query, do the following query to get the ingested data:
 ```sql
