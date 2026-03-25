@@ -47,9 +47,9 @@ The collection process is managed by **systemd-based scheduling**, which execute
     *   `/usr/lib/systemd/system/mysql-monitor.service`
     *   `/usr/lib/systemd/system/mysql-monitor.timer`
 
-The dispatcher triggers **collector workers** (`/usr/local/bin/do-monitor.py`) for each MySQL target. These workers query the `performance_schema` and write the results into the repository database.
+The dispatcher triggers **collector workers** (`/usr/local/bin/do_monitor.py`) for each MySQL target. These workers query the `performance_schema` and write the results into the repository database.
 <br><br>
-The dispatcher also triggers **custom collector workers** (`/usr/local/bin/custom-monitor.py`) for each MySQL target. These workers query the `monitor_tools` schema and write the results into the repository database. See chapter 6 on adding custom metric table and customize dashboard.
+The dispatcher also triggers **custom collector workers** (`/usr/local/bin/custom_monitor.py`) for each MySQL target. These workers query the `monitor_tools` schema and write the results into the repository database. See chapter 6 on adding custom metric table and customize dashboard.
 #### 2. Uptime Monitoring
 Uptime is tracked by a separate scheduler process to ensure high-frequency health checks.
 
