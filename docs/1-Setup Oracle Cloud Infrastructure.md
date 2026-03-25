@@ -50,7 +50,7 @@ To finalize the policy, replace the placeholders in the snippet above with your 
    * *Note: You should already see `MySQL-Perf-Archive` configured for the repository database connection.*
 3. **Add OCI Metrics:** Click **+ Add new data source**, search for **Oracle**, and select **Oracle Cloud Infrastructure Metrics**.
 
-![oci-data-source](https://github.com](https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/blob/main/docs/images/oci-datasource-search.png))
+![oci-data-source](https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/blob/main/docs/images/oci-datasource-search.png)
 
 4. **Configure Authentication:** Set the **Authentication Provider** to **OCI Instance**.
 5. Click **Save & Test**.
