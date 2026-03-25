@@ -73,11 +73,6 @@ The following specifications are based on a **7–14 day retention period**. Req
 #### 3. Storage Optimization & IOPS Requirements
 To ensure the repository database handles the centralized data plane efficiently, follow these performance guidelines.
 
-##### Storage Optimization Strategies
-*   **Data Archiving & Purging:** Implement a rolling retention policy (7–14 days) using automated scripts or MySQL `EVENT` schedulers to purge old metrics.
-*   **Table Partitioning:** Partition repository tables by **day** or **hour**. This allows for near-instant data purging by dropping old partitions rather than executing heavy `DELETE` operations.
-*   **Index Management:** Only index columns frequently used in Grafana filters (e.g., `host`, `metric_name`, `timestamp`). Avoid over-indexing to maintain high-frequency write speeds.
-
 ##### IOPS & Throughput Requirements
 *   **Baseline IOPS:** For 1–20 targets, a baseline of **3,000 IOPS** (SSD-backed storage) is typically sufficient.
 *   **Scaling IOPS:** As you exceed 50 targets, aim for **10,000+ IOPS** to handle simultaneous writes from multiple collector workers without disk queue backups.
