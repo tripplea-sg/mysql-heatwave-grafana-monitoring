@@ -12,8 +12,10 @@ ALL{instance.compartment.id = 'compartment OCID'}
 ```
 Change the `compartment OCID` with your `compartment OCID`. Refer to the following online documentation on how to get your `compartment OCID`: https://docs.oracle.com/en-us/iaas/Content/GSG/Tasks/contactingsupport_topic-Locating_Oracle_Cloud_Infrastructure_IDs.htm <br>
 <br>
-If you are the tenancy owner, then you may change `compartment.id` into `tenancy.id` and use your `tenancy OCID`. <br>
+If you are the tenancy owner, then you may use your `tenancy OCID` as `compartment OCID`. <br><br>
 Refer to the following online documentation on how to create a `Dynamic-group`: https://docs.oracle.com/en-us/iaas/Content/Identity/dynamicgroups/To_create_a_dynamic_group.htm
+<br><br>
+And refer to the following online documentation on how to write a matching rule to define `dynamic-group`: https://docs.oracle.com/en-us/iaas/Content/Identity/dynamicgroups/Writing_Matching_Rules_to_Define_Dynamic_Groups.htm
 
 ### Setup Policies
 
