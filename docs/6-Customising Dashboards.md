@@ -35,7 +35,7 @@ SELECT * FROM mysql.your_new_metric_table;
 CREATE VIEW monitor_tools.your_new_metric_table AS 
 SELECT * FROM mysql.your_new_metric_table;
 ```
-**Latest Metric History:**
+**Latest Metric History:** <br><br>
 On Grafana query, do the following query to get the ingested data:
 ```sql
 SELECT * 
