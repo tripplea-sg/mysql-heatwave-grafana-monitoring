@@ -49,5 +49,6 @@ Instance Monitoring is the primary tool for day-to-day database administration a
 3.  **Root Cause Analysis:** Drill down into **Slow Queries** and **User Statistics** to pinpoint specific workloads or users causing performance degradation.
 4.  **Data Integrity:** Track **Replication Lags** to ensure secondary instances are synchronized and ready for failover.
 
-
+### 5. MySQL-Monitor Instances
+The **Security Monitoring** dashboard provides an audit-ready view of your database's defensive posture, combining advanced MySQL security features with **CIS (Center for Internet Security)** benchmark standards.
 
