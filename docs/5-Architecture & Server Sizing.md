@@ -1,9 +1,23 @@
-### Data Architecture
-Grafana is highly customizable: the existing template can be customized and new dashboards can be built largely in the UI with little to no coding. However, for panels that read from the repo DB, it’s important to understand the schema and data model produced by the collectors before making modification or build a new dashboard. See the following illustration. <br>
+#### Database Repository Structure
+Every MySQL target is mapped to a dedicated schema in the Repository Database (repo DB) using the following naming convention:
+**`<Compartment_Name>_<Instance_Name>`**
+
+To ensure familiarity and ease of use, the system creates a corresponding table for every collected `performance_schema` table within each target's schema.
+
+**Key features of the table structure:**
+*   **Identical Schema:** Tables mirror the source structure of the MySQL target for seamless query transition.
+*   **Invisible Timestamp:** Each table is augmented with a `logtime` column, which stores the timestamp of collection based on the **repo DB clock**.
+*   **Traceability:** The `logtime` column is defined as **INVISIBLE**. This preserves compatibility with the original source table structure while enabling powerful chronological filtering and time-series trending in Grafana.
+
+### 💡 Usability & Purpose
+1.  **Historical Analysis:** Move beyond real-time snapshots to see how performance metrics evolve over days or weeks.
+2.  **Schema Isolation:** Dedicated schemas prevent data collision between different environments (e.g., PROD vs. DEV).
+3.  **Grafana Integration:** The `logtime` column acts as the primary time-series axis for all monitoring dashboards.
+
 ![MySQL-Monitor Instance](https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/blob/main/docs/images/Data_Architecture.png)
 
-Every MySQL target is mapped to its own dedicated schema in the repo DB with the following naming convention: <br><br>
+---
 
-Every collected performance tables, the system creates a corresponding table with same name under every target’s schemas, preserving a similar structure for familiarity. To support traceability and time-series visualization, each table is augmented with `logtime` invisible column that stores  `timestamp` when record was collected; using `repo DB` time clock. The `logtime` is an INVISIBLE column to preserve consistency with source table structure in MySQL targets while enabling chronological filtering and trending in Grafana.
+
 
 
