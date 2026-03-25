@@ -16,6 +16,21 @@ To ensure familiarity and ease of use, the system creates a corresponding table 
 
 ![MySQL-Monitor Instance](https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/blob/main/docs/images/Data_Architecture.png)
 
+#### 🛠️ Custom Query Example: InnoDB Buffer Pool Hit Ratio
+
+The following example demonstrates how to retrieve and visualize the latest **InnoDB Buffer Pool Hit Ratio** from the repository database. This query utilizes Grafana dashboard variables—`${compartment}` (OCI Compartment) and `${display_name}` (MySQL HeatWave Name)—to dynamically target the correct schema.
+
+```sql
+SELECT 
+    (1 - (SUM(IF(VARIABLE_NAME = 'Innodb_buffer_pool_reads', VARIABLE_VALUE, 0)) / 
+    SUM(IF(VARIABLE_NAME = 'Innodb_buffer_pool_read_requests', VARIABLE_VALUE, 1)))) * 100 AS hit_ratio
+FROM 
+    `${compartment}#${display_name}`.global_status
+WHERE 
+    VARIABLE_NAME IN ('Innodb_buffer_pool_read_requests', 'Innodb_buffer_pool_reads') 
+    AND logtime > NOW() - INTERVAL 1 HOUR;
+```
+
 ---
 
 
