@@ -2,7 +2,7 @@
 
 > **Note:** These steps are mandatory only if you plan to use OCI metrics data to monitor **MySQL HeatWave** instances. If not, you may skip this section entirely.
 
-### 1. Setup Identity Domain and Dynamic Group
+### A. Setup Identity Domain and Dynamic Group
 
 **1. Verify or Create an Identity Domain**
 If you need to create a new **Identity Domain**, navigate to **Identity & Security** > **Domains** and click **Create Domain**.
@@ -20,7 +20,7 @@ ALL {instance.compartment.id = 'ocid1.compartment.oc1..example_ID'}
 ```
 You may change compartment OCID with tenancy OCID if you are the tenancy owner or super-user.
 
-### 2. Setup IAM Policies
+### B. Setup IAM Policies
 
 Navigate to **Identity & Security** > **Policies** and click **Create Policy**. Using the **Policy Builder** (Manual Editor), copy and paste the following statements:
 ```
