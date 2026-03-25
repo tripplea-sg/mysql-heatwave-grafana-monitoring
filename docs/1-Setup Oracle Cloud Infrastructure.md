@@ -62,7 +62,8 @@ To finalize the policy, replace the placeholders in the snippet above with your 
 
 <br>
 Once confirmed, you will see both data sources listed. No further data source configuration is required, even when adding more MySQL targets. <br>
-![oci-data-source](https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/blob/main/docs/images/oci-datasource-search.png)
+
+![oci-data-source](https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/blob/main/docs/images/oci-datasource.png)
 
 
 
