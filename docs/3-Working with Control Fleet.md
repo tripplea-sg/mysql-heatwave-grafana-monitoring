@@ -4,3 +4,7 @@ You can toggle metrics globally, define inclusion/exclusion rules for specific t
 
 #### Accessing Control Fleet
 From the left-hand sidebar, navigate to `Dashboards` and select `MySQL-Monitor Control Fleet` from the list.
+
+![oci-data-source](https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/blob/main/docs/images/control_fleet-1.png)
+
+
