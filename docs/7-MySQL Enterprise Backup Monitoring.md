@@ -27,10 +27,10 @@ GRANT SELECT ON monitor_tools.* to 'grafana'@'%';
 GRANT SHOW VIEW ON monitor_tools.* TO 'grafana'@'%';
 
 CREATE VIEW monitor_tools.backup_history AS 
-SELECT * FROM mysql.backup_history;
+SELECT * FROM mysql.backup_history WHERE backup_id=(select max(backup_id) from mysql.backup_history);
 
 CREATE VIEW monitor_tools.backup_progress AS 
-SELECT * FROM mysql.backup_progress;
+SELECT * FROM mysql.backup_progress WHERE id=(select max(id) from mysql.backup_progress);
 ```
 
 #### Dashboard Customization
