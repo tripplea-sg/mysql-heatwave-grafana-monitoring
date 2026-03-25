@@ -23,4 +23,13 @@ sudo chmod 0440 /etc/sudoers.d/opc
 sudo passwd opc
 ```
 
+### Pre-requisites on MySQL target
+Create (if not exists) database user for monitoring and ensure it has SELECT privileges on performance_schema and mysql.component schema.
+```
+MySQL > CREATE USER <user>@’%’ IDENTIFIED BY ‘<complex_password>’;
+MySQL > GRANT SELECT on performance_schema.* to <user>@’%’;
+MySQL > GRANT SELECT on mysql.component to <user>@’@’;
+```
+
+
 
