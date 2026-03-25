@@ -22,8 +22,9 @@ Configure the connection details for a new database instance as shown in the ima
 > **To Update an Existing Target:** Enter the same **Compartment**, **Instance**, and **Connection Details**, then adjust the **Interval**, **Retention**, or **Monitoring Window** as needed. The system will update the existing record based on these identifiers.
 
 
-#### Manage Global Performance Schema Metrics
+#### 2. Manage Global Performance Schema Metrics
 Enable or disable specific `performance_schema` collections across your entire fleet.
+
 
 #### Customizing Instance Metrics
 *   **Add Specific Metrics to an Instance:** Enable deeper granularity for high-priority targets.
