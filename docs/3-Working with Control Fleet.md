@@ -32,10 +32,22 @@ Set appropriate **Retention** to indicate number of days historical data is stor
 *   *Tip: To stop monitoring a performance schema immediately, simply enter the same table name and set the **End Date Time** to a past date.*
 
 
-#### 3. Customizing Instance Metrics
-*   **Add Specific Metrics to an Instance:** Enable deeper granularity for high-priority targets.
+### 🖥️ Customizing Instance Metrics
 
-*   **Exclude Metrics from an Instance:** Reduce noise and overhead for specific environments.
+#### Add Specific Metrics to an Instance
+Enable deeper granularity for high-priority targets by adding specific tables to the collection policy.
+
+![oci-data-source](https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/blob/main/docs/images/performance_schema_include.png)
+
+*   **Sample Configuration:** The image above shows how to register `performance_schema.threads` for a target in Compartment `HanantoWicaksono_sandbox` with Instance name `test-2`.
+*   **Retention (Days):** Define how long historical data for this specific metric is stored in the Repository DB.
+*   **Monitoring Window:** Set the **Start** and **End Date Time** to define the active collection period for this metric.
+
+> **💡 Pro-Tip:** To stop monitoring a specific metric immediately, enter the same **Compartment**, **Instance**, and **Table Name**, then set the **End Date Time** to a past date.
+
+#### Exclude Metrics from an Instance
+Reduce overhead and noise by explicitly excluding certain `performance_schema` tables from being collected for specific environments.
+
 
 ---
 
