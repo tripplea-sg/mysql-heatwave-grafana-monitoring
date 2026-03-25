@@ -1,3 +1,5 @@
+![oci-data-source](https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/blob/main/docs/images/Dashboards.png)
+
 ### 1. MySQL-Monitor Database Global Variables
 The **Global Variables** view is essential for maintaining a healthy monitoring fleet:
 
