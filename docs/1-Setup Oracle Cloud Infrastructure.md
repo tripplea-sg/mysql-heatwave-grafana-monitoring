@@ -44,6 +44,9 @@ To finalize the policy, replace the placeholders in the snippet above with your 
 **Reference:** [Official OCI Documentation: Creating IAM Policies](https://docs.oracle.com/en/cloud/paas/integration-cloud/oracle-integration-oci/creating-iam-policy.html)
 
 ### C. Install OCI Data Source
+Login to Grafana once it’s up as admin using password you just set. <br><br> Go to `connections`, then `data sources`. You will see `MySQL-Perf-Archive` already set for connection to repo DB. 
+<br><br> Now we need to install oci-metric-datasource. Click `+ Add new data source` and search for `Oracle`  and click `Oracle Cloud Infrastructure Metrics`.
+
 
 
 
