@@ -10,16 +10,18 @@ From the left-hand sidebar, navigate to `Dashboards` and select `MySQL-Monitor C
 ### 🖥️ Target Management
 #### Register a New MySQL Target
 #### Register a New MySQL Target
+#### Register or Update a MySQL Target
 Configure the connection details for a new database instance as shown in the image above.
 
-*   **Compartment:** The OCI Compartment ID (for Cloud) or an environment label like `PROD`, `DEV`, or `TEST` (for On-Premise).
-*   **Instance:** The MySQL HeatWave display name (for Cloud) or a custom descriptive name (for On-Premise).
+*   **Compartment:** The OCI Compartment ID (Cloud) or an environment label like `PROD`, `DEV`, or `TEST` (On-Premise).
+*   **Instance:** The MySQL HeatWave display name (Cloud) or a custom descriptive name (On-Premise).
 *   **Connection Details:** Provide the **IP Address**, **Port**, **Username**, and **Password** for the target MySQL instance.
 *   **Interval (Minutes):** The frequency of metric data collection (e.g., every 1, 5, or 10 minutes).
 *   **Retention (Days):** The number of days historical data is stored in the Repository DB before being purged.
 *   **Monitoring Window:** Use **Start** and **End Date Time** to define the active monitoring period. 
-    *   *Tip: To stop monitoring a target immediately, set the **End Date Time** to a past date.*
+    *   *Tip: To stop monitoring a target immediately, simply set the **End Date Time** to a past date.*
 
+> **To Update an Existing Target:** Enter the same **Compartment**, **Instance**, and **Connection Details**, then adjust the **Interval**, **Retention**, or **Monitoring Window** as needed. The system will update the existing record based on these identifiers.
 
 
 #### Manage Global Performance Schema Metrics
