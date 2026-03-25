@@ -32,7 +32,7 @@ SELECT * FROM mysql.backup_progress;
 ```
 
 #### Dashboard Customization
-
+On Grafana query, do the following query to get the ingested data: <br>
 **Latest Backup History:**
 ```sql
 SELECT * 
