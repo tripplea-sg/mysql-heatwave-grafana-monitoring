@@ -1,2 +1,2 @@
 # Setup Oracle Cloud Infrastructure
-You may skip this steps entirely if you're 100% on-premise and not planning to use OCI monitoring metrics data.
+This steps are mandatory if you're planning to use OCI metrics data to monitor MySQL HeatWave instances, otherwise you may skip this steps entirely.
