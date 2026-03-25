@@ -17,33 +17,21 @@ Grant `SELECT` access to your monitoring user (e.g., `grafana`).
 GRANT SELECT ON mysql.backup_history TO 'grafana'@'%';
 GRANT SELECT ON mysql.backup_progress TO 'grafana'@'%';
 ```
-#### Exposing Backup Data via Performance Schema
-Create views within the `performance_schema` to standardize access to the backup tables:
+#### Exposing Backup Data via monitor_tools schema
+Create views within the `monitor_tools` to standardize access to the backup tables:
 ```sql
-CREATE VIEW performance_schema.backup_history AS 
+CREATE DATABASE IF NOT EXISTS monitor_tools;
+
+GRANT SELECT ON monitor_tools.* to 'grafana'@'%';
+
+CREATE VIEW monitor_tools.backup_history AS 
 SELECT * FROM mysql.backup_history;
 
-CREATE VIEW performance_schema.backup_progress AS 
+CREATE VIEW monitor_tools.backup_progress AS 
 SELECT * FROM mysql.backup_progress;
 ```
-#### Repository Database Setup
-On the MySQL repository database, create dummy tables and corresponding views. This ensures that `backup_history` and `backup_progress` are discoverable within the Grafana console, even before backup data is populated.
 
-```sql
-CREATE DATABASE dummy;
-
-CREATE TABLE dummy.backup_history (t int);
-CREATE TABLE dummy.backup_progress (t int);
-
-CREATE VIEW performance_schema.backup_history AS 
-SELECT * FROM dummy.backup_history;
-
-CREATE VIEW performance_schema.backup_progress AS 
-SELECT * FROM dummy.backup_progress;
-```
-#### Metrics Registration & Dashboard Configuration
-1. Navigate to **Control Fleet** to register these new metrics for any registered MySQL EE or MySQL AI targets.
-2. Create and customize your own dashboard using the following baseline queries to retrieve the latest backup status:
+#### Dashboard Customization
 
 **Latest Backup History:**
 ```sql
