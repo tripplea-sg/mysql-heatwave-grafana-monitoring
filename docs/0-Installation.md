@@ -10,7 +10,7 @@ If you are not on OCI, provision a server (VM or Bare Metal) with **Oracle Linux
 
 Login to your server as the `root` user and create the `opc` user:
 
-**1. Create "opc" user**
+**1. Create `opc` user**
 ```bash
 sudo groupadd opc
 sudo useradd -m -d /home/opc -g opc -s /bin/bash opc
@@ -30,6 +30,17 @@ MySQL > CREATE USER <user>@’%’ IDENTIFIED BY ‘<complex_password>’;
 MySQL > GRANT SELECT on performance_schema.* to <user>@’%’;
 MySQL > GRANT SELECT on mysql.component to <user>@’@’;
 ```
+
+### Installation Steps
+It takes less than 15 minutes to complete the whole thing here. Just login to your grafana server and install:
+**1. Install tools**
+```bash
+sudo yum install -y sudo yum install -y https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/raw/main/releases/mysql-monitor-3.0-1.el9.noarch.rpm
+``
+**2. Setup Instance**
+**3. Install dashboard**
+
+
 
 
 
