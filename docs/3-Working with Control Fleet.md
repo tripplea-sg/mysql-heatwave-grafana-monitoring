@@ -5,6 +5,15 @@ You can toggle metrics globally, define inclusion/exclusion rules for specific t
 #### Accessing Control Fleet
 From the left-hand sidebar, navigate to `Dashboards` and select `MySQL-Monitor Control Fleet` from the list.
 
-![oci-data-source](https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/blob/main/docs/images/control_fleet-1.png)
+![oci-data-source](https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/blob/main/docs/images/Control_fleet-1.png)
+
+#### Register a New MySQL Target
 
 
+#### Add or Remove Performance Schema Metrics Globally
+
+
+#### Add Performance Schema Metrics to an Instance
+
+
+#### Remove Performance Schema Metrics from an Instance
