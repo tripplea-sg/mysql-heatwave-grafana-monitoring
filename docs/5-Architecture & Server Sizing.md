@@ -33,6 +33,10 @@ WHERE
 
 ---
 ### Architecture Components
+The following architecture components are installed and running in the server automatically during installation.
+
+
+
 
 
 
