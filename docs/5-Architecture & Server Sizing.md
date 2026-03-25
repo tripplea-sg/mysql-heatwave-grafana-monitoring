@@ -35,6 +35,8 @@ WHERE
 ### Architecture Components
 The following architecture components are installed and running in the server automatically during installation.
 
+![MySQL-Monitor Instance](https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/blob/main/docs/images/Components.png)
+
 
 
 
