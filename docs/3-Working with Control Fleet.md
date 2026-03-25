@@ -23,7 +23,13 @@ Configure the connection details for a new database instance as shown in the ima
 
 
 #### 2. Manage Global Performance Schema Metrics
-Enable or disable specific `performance_schema` collections across your entire fleet.
+Enable or disable specific `performance_schema` collections across your entire fleet. <br>
+
+![oci-data-source](https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/blob/main/docs/images/Global_performance_schema.png)
+
+In the picture is a sample how to register `performance_schema.processlist` into global performance schema metrics. 
+Set appropriate **Retention** to indicate number of days historical data is stored, as well as **Start** and **End Date Time** to indicate when to start and stop monitoring this metric.
+*   *Tip: To stop monitoring a performance schema immediately, simply enter the same table name and set the **End Date Time** to a past date.*
 
 
 #### Customizing Instance Metrics
