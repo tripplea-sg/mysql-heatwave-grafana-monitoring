@@ -57,7 +57,9 @@ Uptime is tracked by a separate scheduler process to ensure high-frequency healt
 *   **Frequency:** Every 10 seconds.
 *   **Data Format:** Stores status as `1` (Up) or `0` (Down) in the repository database.
 
-### 2. Hardware Sizing Recommendations
+---
+
+### Hardware Sizing Recommendations
 The following specifications are based on a **7–14 day retention period**. Required storage fluctuates based on the number of performance schema metrics and scheduling frequency.
 
 
@@ -68,17 +70,15 @@ The following specifications are based on a **7–14 day retention period**. Req
 | **50 – 100** | 16 Cores | 64 GB | 20 – 50 GB per target |
 | **100+** | 32+ Cores | 128 GB | 20 – 50 GB per target |
 
----
-
-### 3. Storage Optimization & IOPS Requirements
+#### 3. Storage Optimization & IOPS Requirements
 To ensure the repository database handles the centralized data plane efficiently, follow these performance guidelines.
 
-#### Storage Optimization Strategies
+##### Storage Optimization Strategies
 *   **Data Archiving & Purging:** Implement a rolling retention policy (7–14 days) using automated scripts or MySQL `EVENT` schedulers to purge old metrics.
 *   **Table Partitioning:** Partition repository tables by **day** or **hour**. This allows for near-instant data purging by dropping old partitions rather than executing heavy `DELETE` operations.
 *   **Index Management:** Only index columns frequently used in Grafana filters (e.g., `host`, `metric_name`, `timestamp`). Avoid over-indexing to maintain high-frequency write speeds.
 
-#### IOPS & Throughput Requirements
+##### IOPS & Throughput Requirements
 *   **Baseline IOPS:** For 1–20 targets, a baseline of **3,000 IOPS** (SSD-backed storage) is typically sufficient.
 *   **Scaling IOPS:** As you exceed 50 targets, aim for **10,000+ IOPS** to handle simultaneous writes from multiple collector workers without disk queue backups.
 *   **Latency Sensitivity:** Use SSD-backed storage to ensure low-latency writes. High I/O wait times will cause "gaps" in Grafana charts as collection workers get delayed.
