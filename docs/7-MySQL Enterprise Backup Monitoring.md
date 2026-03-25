@@ -46,4 +46,6 @@ WHERE logtime = (SELECT MAX(logtime) FROM `${compartment}#${display_name}`.backu
 SELECT * 
 FROM `${compartment}#${display_name}`.backup_progress 
 WHERE logtime = (SELECT MAX(logtime) FROM `${compartment}#${display_name}`.backup_progress);
+```
+Once data is populated in repository database, you can design your dashboard for backup monitoring.
 
