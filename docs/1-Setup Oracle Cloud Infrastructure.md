@@ -54,7 +54,7 @@ To finalize the policy, replace the placeholders in the snippet above with your 
 
 4. **Configure Authentication:** Set the **Authentication Provider** to **OCI Instance**.
 
-![oci-data-source](https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/blob/main/docs/images/oci-datasource-setting.png)
+![oci-data-source](https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/blob/main/docs/images/oci-datasouce-setting.png)
 
 6. Click **Save & Test**.
 
