@@ -44,9 +44,21 @@ To finalize the policy, replace the placeholders in the snippet above with your 
 **Reference:** [Official OCI Documentation: Creating IAM Policies](https://docs.oracle.com/en/cloud/paas/integration-cloud/oracle-integration-oci/creating-iam-policy.html)
 
 ### C. Install OCI Data Source
-Login to Grafana once it’s up as admin using password you just set. <br><br> Go to `connections`, then `data sources`. You will see `MySQL-Perf-Archive` already set for connection to repo DB. 
-<br><br> Now we need to install oci-metric-datasource. Click `+ Add new data source` and search for `Oracle`  and select `Oracle Cloud Infrastructure Metrics`.
-https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/blob/main/docs/images/oci-datasource-search.png
+
+1. **Log in to Grafana** as `admin` using the password you previously set.
+2. Navigate to **Connections** > **Data Sources**. 
+   * *Note: You should already see `MySQL-Perf-Archive` configured for the repository database connection.*
+3. **Add OCI Metrics:** Click **+ Add new data source**, search for **Oracle**, and select **Oracle Cloud Infrastructure Metrics**.
+
+![oci-data-source]([https://github.com](https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/blob/main/docs/images/oci-datasource-search.png))
+
+4. **Configure Authentication:** Set the **Authentication Provider** to **OCI Instance**.
+5. Click **Save & Test**.
+
+
+
+Once confirmed, you will see both data sources listed. No further data source configuration is required, even when adding more MySQL targets.
+
 
 
 
