@@ -39,7 +39,7 @@ Enable deeper granularity for high-priority targets by adding specific tables to
 
 ![oci-data-source](https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/blob/main/docs/images/performance_schema_include.png)
 
-*   **Sample Configuration:** The image above shows how to register `performance_schema.threads` for a target in Compartment `HanantoWicaksono_sandbox` with Instance name `test-2`.
+*   **Sample Configuration:** The image above shows how to register `performance_schema.threads` for a target in Compartment `HanantoWicaksono_sandbox` with Instance name `test-2-replica`.
 *   **Retention (Days):** Define how long historical data for this specific metric is stored in the Repository DB.
 *   **Monitoring Window:** Set the **Start** and **End Date Time** to define the active collection period for this metric.
 
