@@ -8,9 +8,7 @@ From the left-hand sidebar, navigate to `Dashboards` and select `MySQL-Monitor C
 ![oci-data-source](https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/blob/main/docs/images/Control_fleet-1.png)
 
 ### 🖥️ Target Management
-#### Register a New MySQL Target
-#### Register a New MySQL Target
-#### Register or Update a MySQL Target
+#### 1. Register or Update a MySQL Target
 Configure the connection details for a new database instance as shown in the image above.
 
 *   **Compartment:** The OCI Compartment ID (Cloud) or an environment label like `PROD`, `DEV`, or `TEST` (On-Premise).
