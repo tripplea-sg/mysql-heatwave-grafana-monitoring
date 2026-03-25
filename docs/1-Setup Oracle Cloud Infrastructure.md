@@ -20,6 +20,7 @@ ALL {instance.compartment.id = 'ocid1.compartment.oc1..example_ID'}
 ```
 You may change compartment OCID with tenancy OCID if you are the tenancy owner or super-user.
 
+---
 ### B. Setup IAM Policies
 
 Navigate to **Identity & Security** > **Policies** and click **Create Policy**. Using the **Policy Builder** (Manual Editor), copy and paste the following statements:
