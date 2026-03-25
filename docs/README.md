@@ -11,11 +11,12 @@ This Grafana monitoring template helps teams understand how to add practical MyS
 ### Features
 
 * **Configuration Monitoring:** Track system variables and configuration changes.
-* **Instance Monitoring:** Monitor CPU, memory, I/O, and buffer pool efficiency.
+* **Instance Monitoring:** Monitor Uptime, CPU, memory, I/O, and buffer pool efficiency.
 * **Security Monitoring:** Audit access patterns and security-related metrics.
 * **High Availability Monitoring:** Track replication lag and cluster health.
 * **MySQL Enterprise Backup Monitoring:** Monitor backup success and performance.
-![Alt text](https://link-to-your-image.com)
+<br><br>
+![MySQL-Monitor Instance](https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/blob/main/docs/images/Fig-1-Grafana%20Dashboard.png))
 
   
 
