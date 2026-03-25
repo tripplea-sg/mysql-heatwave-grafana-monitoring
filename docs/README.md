@@ -16,7 +16,7 @@ This Grafana monitoring template helps teams understand how to add practical MyS
 * **High Availability Monitoring:** Track replication lag and cluster health.
 * **MySQL Enterprise Backup Monitoring:** Monitor backup success and performance.
 <br><br>
-![MySQL-Monitor Instance](https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/blob/main/docs/images/Fig-1-Grafana%20Dashboard.png))
+![MySQL-Monitor Instance](https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/blob/main/docs/images/Fig-1-Grafana%20Dashboard.png)
 
   
 
