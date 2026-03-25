@@ -29,6 +29,8 @@ CREATE DATABASE IF NOT EXISTS monitor_tools;
 
 GRANT SELECT ON monitor_tools.* to 'grafana'@'%';
 
+GRANT SHOW VIEW ON monitor_tools.* TO 'monitor'@'%';
+
 CREATE VIEW monitor_tools.your_new_metric_table AS 
 SELECT * FROM mysql.your_new_metric_table;
 
