@@ -70,7 +70,7 @@ The following specifications are based on a **7–14 day retention period**. Req
 | **50 – 100** | 16 Cores | 64 GB | 20 – 50 GB per target |
 | **100+** | 32+ Cores | 128 GB | 20 – 50 GB per target |
 
-#### 3. Storage Optimization & IOPS Requirements
+#### Storage Optimization & IOPS Requirements
 To ensure the repository database handles the centralized data plane efficiently, follow these performance guidelines.
 
 ##### IOPS & Throughput Requirements
