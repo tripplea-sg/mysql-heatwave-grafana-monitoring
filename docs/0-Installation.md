@@ -40,14 +40,17 @@ sudo yum install -y sudo yum install -y https://github.com/tripplea-sg/mysql-hea
 ```
 
 **2. Setup Instance**
-```
+```bash
 install_grafana
 ```
-Set your new password for `root@localhost` of MySQL repository database and admin user for Grafana.
+Set your new password for `root@localhost` of MySQL repository database and admin user for Grafana. This will install components: Grafana OSS, MySQL server, MySQL Shell, dispatcher & collector, dashboard JSON files, etc.
+
 
 **3. Install dashboard**
-
-
+```bash
+deploy_grafana_dashboard
+```
+This will deploy all dashboards into Grafana from json files.
 
 
 
