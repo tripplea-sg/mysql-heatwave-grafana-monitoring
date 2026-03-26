@@ -36,7 +36,7 @@ It takes less than 15 minutes to complete the whole thing here. Just login to yo
 
 **1. Install tools**
 ```bash
-sudo yum install -y sudo yum install -y https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/raw/main/releases/mysql-monitor-3.0-1.el9.noarch.rpm
+sudo yum install -y sudo yum install -y https://github.com/tripplea-sg/mysql-heatwave-grafana-monitoring/raw/main/releases/mysql-monitor-3.1-1-stable.el9.noarch.rpm
 ```
 
 **2. Setup Instance**
