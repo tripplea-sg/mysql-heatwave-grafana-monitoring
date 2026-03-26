@@ -58,7 +58,7 @@ Check your grafana version with the following command:
 ```
 grafana-server -v
 ```
-If the version is 12.1.1 < then most likely you will hit a bug as the SQL command will get truncated. You need to downgrade your grafana to 12.1.1 using the following command:
+If the version is 12.4.1-1 < then most likely you will hit a bug as the SQL command will get truncated. You need to downgrade your grafana to 12.4.1-1 using the following command:
 ```
 sudo dnf downgrade grafana-12.4.1-1
 ```
