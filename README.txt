@@ -94,8 +94,8 @@ Usage
 Requirements
 ------------
 - Oracle Linux 9 / RedHat Enterprise Linux 9
-- Grafana (latest stable version recommended)
-- MySQL / HeatWave instance (used as repository)
+- Grafana 12.4.1
+- MySQL Server 8.4.x / 9.x (used as repository)
 - Single server environment (recommended)
 - Network access to monitored MySQL instances
 
