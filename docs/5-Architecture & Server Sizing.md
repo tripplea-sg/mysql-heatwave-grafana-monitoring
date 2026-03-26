@@ -61,7 +61,7 @@ Uptime is tracked by a separate scheduler process to ensure high-frequency healt
 ---
 
 ### Hardware Sizing Recommendations
-The following specifications are based on a **7–10 day retention period**. Required storage fluctuates based on the number of performance schema metrics and scheduling frequency.
+The following specifications are based on a **7–14 day retention period**. Required storage fluctuates based on the number of performance schema metrics and scheduling frequency.
 
 
 | Monitoring Instances | CPU Cores | RAM | Recommended Storage |
