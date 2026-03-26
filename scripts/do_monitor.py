@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 # Copyright (C) 2026 Hananto Wicaksono
 #
 # This program is free software: you can redistribute it and/or modify
@@ -57,6 +57,8 @@ def query_mysql(host, user, password, query):
         conn.close()
         return rows
     except Exception as e:
+        cur.close()
+        conn.close()
         return []
 
 # -----------------------
@@ -207,6 +209,10 @@ def main(compartment, display_name, tgt_ip, tgt_port, tgt_user, tgt_pass, passwo
             src_conn.close()
 
         except Exception as e:
+            tgt_cur.close()
+            tgt_conn.close()
+            src_cur.close()
+            src_conn.close()
             log_error(f"[DDL ERROR] {tablename}: {e}")
 
     # -----------------------
@@ -298,6 +304,10 @@ def main(compartment, display_name, tgt_ip, tgt_port, tgt_user, tgt_pass, passwo
             print(f"[DONE] {tablename} ({len(rows)} rows)")
 
         except Exception as e:
+            src_cur.close()
+            src_conn.close()
+            tgt_cur.close()
+            tgt_conn.close()
             print(f"[backup_restore ERROR] {tablename}: {e}")
             log_error(f"[backup_restore ERROR] {tablename}: {e}")
 
@@ -356,6 +366,10 @@ def main(compartment, display_name, tgt_ip, tgt_port, tgt_user, tgt_pass, passwo
             src_conn.close()
             print("[TABLES] done")
         except Exception as e:
+            src_cur.close()
+            src_conn.close()
+            tgt_cur.close()
+            tgt_conn.close()
             log_error(f"[TABLES ERROR] {e}")
 
     def backup_restore_plugins():
@@ -416,6 +430,10 @@ def main(compartment, display_name, tgt_ip, tgt_port, tgt_user, tgt_pass, passwo
             src_conn.close()
             print("[PLUGINS] done")
         except Exception as e:
+            src_cur.close()
+            src_conn.close()
+            tgt_cur.close()
+            tgt_conn.close()
             log_error(f"[PLUGINS ERROR] {e}")
 
     # USER_PRIVILEGES METADATA
@@ -467,6 +485,10 @@ def main(compartment, display_name, tgt_ip, tgt_port, tgt_user, tgt_pass, passwo
             src_conn.close()
             print("[USER_PRIVILEGES] done")
         except Exception as e:
+            src_cur.close()
+            src_conn.close()
+            tgt_cur.close()
+            tgt_conn.close()
             log_error(f"[USER_PRIVILEGES ERROR] {e}")
 
     # component METADATA
@@ -515,6 +537,10 @@ def main(compartment, display_name, tgt_ip, tgt_port, tgt_user, tgt_pass, passwo
             src_conn.close()
             print("[component] done")
         except Exception as e:
+            src_cur.close()
+            src_conn.close()
+            tgt_cur.close()
+            tgt_conn.close()
             log_error(f"[component ERROR] {e}")
 
     # -----------------------
