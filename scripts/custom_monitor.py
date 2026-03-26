@@ -183,30 +183,35 @@ def main(compartment, display_name,
         src_conn.close()
 
         # Monitored MySQL connection to get views
-        tgt_conn = get_conn(tgt_ip, tgt_user, tgt_pass, int(tgt_port), db="monitor_tools")
+        tgt_conn = get_conn(tgt_ip, tgt_user, tgt_pass, int(tgt_port))
         views = get_views(tgt_conn)
         tgt_conn.close()
 
-        print(f"Found {len(views)} views in monitor_tools")
+        print(f"{schema_name}: Found {len(views)} views in monitor_tools")
 
-        # Parallel copy
-        with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-            futures = [
-                executor.submit(
-                    copy_view,
-                    v,
-                    IP_ADDRESS, USER_NAME, password,
-                    tgt_ip, tgt_user, tgt_pass, int(tgt_port),
-                    schema_name
-                )
-                for v in views
-            ]
-            for f in futures:
-                f.result()
+        if len(views) == 0:
+            pass  # do nothing
+        else:
+            # Parallel copy
+            with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+                futures = [
+                    executor.submit(
+                        copy_view,
+                        v,
+                        IP_ADDRESS, USER_NAME, password,
+                        tgt_ip, tgt_user, tgt_pass, int(tgt_port),
+                        schema_name
+                    )
+                    for v in views
+                ]
+                for f in futures:
+                    f.result()
 
         print("All views copied successfully")
 
     except Error as e:
+        src_conn.close()
+        tgt_conn.close()
         print(f"[MAIN ERROR]: {e}")
 
 # -----------------------
