@@ -26,6 +26,7 @@ import sys
 # Add /usr/local/bin to Python path to import do_monitor.py
 sys.path.insert(0, "/usr/local/bin")
 import do_monitor  # do_monitor.py must have a main() function
+import custom_monitor
 
 # --- Config ---
 ENC_FILE = "/home/opc/.mysqlsh/plugins/grafana/mysql.pass.enc"
@@ -125,6 +126,29 @@ conn.close()
 NOW = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 # --- Function to process a single target ---
+def custom_process_target(row):
+    if len(row) < 8:
+        return
+    COMPARTMENT, DISPLAY_NAME, IP_ADDRESS, PORT, USERNAME, PASS, RETENTION, MINUTE_INTERVAL = row
+
+    if not DISPLAY_NAME:
+        return
+
+    print(f"Call custom-monitor for {DISPLAY_NAME}")
+
+    custom_monitor.main(
+            COMPARTMENT,
+            DISPLAY_NAME,
+            IP_ADDRESS,
+            PORT,
+            USERNAME,
+            PASS,
+            MYSQL_PASSWORD,  # pass the already decrypted password
+            NOW,
+            RETENTION
+        )
+
+# --- Function to process a single target ---
 def process_target(row):
     if len(row) < 8:
         return
@@ -176,6 +200,7 @@ def process_target(row):
 # --- Run all targets in parallel ---
 with ThreadPoolExecutor(max_workers=MAX_PARALLEL) as executor:
     futures = [executor.submit(process_target, row) for row in targets]
+    futures.extend([executor.submit(custom_process_target, row) for row in targets])
     for future in futures:
         future.result()  # propagate exceptions if any
 
