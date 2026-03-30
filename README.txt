@@ -71,6 +71,8 @@ $ install_grafana
 
 $ deploy_grafana_dashboard
 
+$ sudo dnf downgrade grafana-12.4.1-1
+
 
 MySQL Target Installation
 -------------------------
