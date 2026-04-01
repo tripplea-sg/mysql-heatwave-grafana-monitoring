@@ -62,6 +62,19 @@ If the version is 12.4.1-1 < then most likely you will hit a bug as the SQL comm
 ```
 sudo dnf downgrade grafana-12.4.1-1
 ```
-
-
+---
+### Known Issue
+A user reported unable to start monitoring service after installing this Grafana Monitoring with the following error message:
+```
+Failed to start mysql-monitor.timer:
+Failed to start mysql-uptime.service:
+```
+This issue is caused by installation step failed to copy mysql-monitor.timer, mysql-uptime.service, and mysql-monitor.service from /usr/local/bin to /usr/lib/systemd/system/ <br>
+Solution is to do the following:
+```
+sudo cp /usr/local/bin/mysql-monitor.timer /usr/local/bin/mysql-monitor.service /usr/local/bin/mysql-uptime.servive /usr/lib/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl start mysql-monitor.timer
+sudo systemctl start mysql-uptime.service
+```
 
