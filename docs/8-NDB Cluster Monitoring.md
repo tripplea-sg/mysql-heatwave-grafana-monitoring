@@ -27,5 +27,5 @@ On Grafana query, do the following query to get the ingested data: <br><br>
 **Latest NDB Cluster memory usage info:**
 ```
 SELECT * from `${compartment}#${display_name}`.memoryusage
-WHERE 
+WHERE logtime = (SELECT MAX(logtime) FROM `${compartment}#${display_name}`.global_variables);
 ```
