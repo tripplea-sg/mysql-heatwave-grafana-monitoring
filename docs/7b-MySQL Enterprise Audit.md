@@ -95,6 +95,6 @@ SELECT *
 FROM `${compartment}#${display_name}`.audit_data
 WHERE logtime = (SELECT MAX(logtime) FROM `${compartment}#${display_name}`.audit_log_filter);
 ``
-Once data is populated in repository database, you can design your dashboard for backup monitoring.
+Once data is populated in repository database, you can design your dashboard for audit log monitoring.
 
 
