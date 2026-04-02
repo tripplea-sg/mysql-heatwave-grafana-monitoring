@@ -2,7 +2,7 @@
 
 MySQL Enterprise Firewall provides enterprise-grade MySQL Database Firewall. <br>
 Please refer to the following for more information on MySQL Enterprise Firewall: <br>
-https://dev.mysql.com/doc/refman/8.4/en/mysql-enterprise-audit.html
+https://dev.mysql.com/doc/refman/8.4/en/firewall-usage.html
 
 ---
 
